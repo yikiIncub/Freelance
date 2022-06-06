@@ -41,7 +41,12 @@ return [
             'provider' => 'users',
         ],
     ],
-
+    'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'freelances',
+        ],
+    ],
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -64,13 +69,19 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
     ],
-
+    'providers' => [
+        'freelances' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Freelance::class,
+        ],
+    ],
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
@@ -89,6 +100,14 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+    ],
+    'passwords' => [
+        'freelances' => [
+            'provider' => 'freelances',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

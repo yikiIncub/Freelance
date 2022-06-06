@@ -4,29 +4,36 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\Freelance as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Freelance extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
-
     /**
-     * The attributes that are mass assignable.
+     * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
+    protected $table= "freelances";
+    
     protected $fillable = [
         'name',
-        'prenom',
+        'Prenom',
         'email',
-        'type',
         'telephone',
+        'nationalite',
+        'residence',
+        'domaine',
+        'specialite',
+        'experience',
+        'motivation',
+        'Sexe',
         'password',
 
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -36,18 +43,12 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
     /**
-     * The attributes that should be cast.
+     * The attributes that should be hidden for serialization.
      *
-     * @var array<string, string>
+     * @var array<int, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function sendPasswordResetNotefication($token){
-        $url='https://spa.test/reset-password?token='. $token;
-        $this->notify(new ResetPasswordNotification($url));
-    }
-    
 }
