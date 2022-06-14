@@ -1,12 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Freelance;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Mail;
+use Carbon\carbon;
 use Illuminate\Support\facades\Validator;
-use Auth;
+use Illuminate\Validation\Rules\Password;
+use App\Mail\forgotpasswordMail;
+use App\Models\PasswordReset;
 
 class AuthApi extends Controller
 {
@@ -80,7 +86,7 @@ class AuthApi extends Controller
         }else{
             return response()->json([
                 'status'=>0,
-                'massage'=>'Vous êtes pas inscrit'
+                'massage'=>'Vous n êtes pas inscrit'
             ], 404);
 
         }
@@ -96,7 +102,7 @@ class AuthApi extends Controller
     }
     //la deconnexion
     public function logout(Request $request){
-        Auth::user()->tokens()->delete();
+        Auth::user()->token()->delete();
         return response()->json([
             'status'=>1,
             'message'=>'Vous étes deconnecter'
@@ -108,16 +114,74 @@ class AuthApi extends Controller
         $request->validate([
             'email'=>'required|email'
         ]);
-        $status=Password::sendRsetLink(
-            $request->only('email')
-        );
-        if($status== Password::RESET_LINK_SENT){
-            return [
-                 'status'=>__($status)
-            ];
-        }
+        $user=User::where('email',$request->email)->first();
+        if(!$user){
+             return redirect()->back()->with('error','Email not found');
+            
+        }else{
+            $reset_code=Str::random(200);
+            PasswordReset::create([
+                'user_id'=>$user->id,
+                'reset_code'=>$reset_code
+            ]);
+            Mail::to($user->email)->send(new forgotpasswordMail($user->first_name,$reset_code));
+         }
+       
         throw ValidationExeception::withMessages([
             'email'=>[trans($status)]
         ]);
     }
+    public function resetPassword($reset_code){
+        $password_reset_data=PasswordReset::where('reset_code')->first();
+      if(!$password_reset_data||carbon::now()->subMinutes((50)>$password));
+        return response()->json([
+        'status'=>0,
+        'message'=>'Lien expiré.'
+        ]);
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required|min:8|confirmed'
+        ]);
+        $user=User::find($password_reset_data->user_id);
+        if($user->email!=$request->email){
+            return  response()->json([
+                'status'=>0,
+                'message'=>'Email invalide.'
+            ]);
+        }else{
+            $password_reset_data->delete();
+            $user->update([
+                'password'=>bcrypt($request->password)
+            ]);
+            return  response()->json([
+                'status'=>1,
+                'message'=>'Modification effectué avec succés.'
+            ]);
+        }
+}
+
+//Mise à jour du profil
+public function updateprofil(Request $request){
+    $validator=validator::make($request->all(),[
+        'name'=>'required|string|min:3',
+        'prenom'=>'required|string|min:3',
+        'telephone'=>'nullable|min:8',
+        'nationalite'=>'nullable|max:50',
+        'residence'=>'nullable|max:50',
+        'Sexe'=>'nullable', 
+        'photo'=>'nullable|image|mimes:jpeg,jpg,png',
+        'email'=>'required|email|unique:users',
+        'type'=>'required|string|min:3',
+        'password'=>'required|min:8|confirmed',
+       
+   ]);
+   if($validator->fails()){
+    return response()->json([
+        'message'=>'invalide',
+        'errors'=>$validator->errors()
+    ],422);
+    }
+    $user=$request->user();
+    
+}
 }
