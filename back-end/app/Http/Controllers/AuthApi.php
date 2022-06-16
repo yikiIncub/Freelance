@@ -1,18 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use File;
+use Mail;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\PasswordReset;
+use Illuminate\Support\Carbon;
+use App\Mail\forgotpasswordMail;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Mail;
-use Carbon\carbon;
 use Illuminate\Support\facades\Validator;
 use Illuminate\Validation\Rules\Password;
-use App\Mail\forgotpasswordMail;
-use App\Models\PasswordReset;
+use Illuminate\Validation\ValidationException;
 
 class AuthApi extends Controller
 {
@@ -73,20 +76,20 @@ class AuthApi extends Controller
 
                 return response()->json([
                     'status'=>1,
-                    'massage'=>'Vous étes connecté',
+                    'message'=>'Vous étes connecté',
                     'access_token'=>$token
-                ], 404);
+                ], 200);
                 }else{
                     return response()->json([
                         'status'=>0,
-                        'massage'=>'Mot de passe incorrect'
+                        'message'=>'Mot de passe incorrect'
                     ]); 
                 }
 
         }else{
             return response()->json([
                 'status'=>0,
-                'massage'=>'Vous n êtes pas inscrit'
+                'message'=>'Vous n êtes pas inscrit'
             ], 404);
 
         }
@@ -96,7 +99,7 @@ class AuthApi extends Controller
     public function profil(){
         return response()->json([
             'status'=>1,
-            'massage'=>'information du profil',
+            'message'=>'information du profil',
             'datas'=>Auth::user()        
         ]);
     }
@@ -124,20 +127,20 @@ class AuthApi extends Controller
                 'user_id'=>$user->id,
                 'reset_code'=>$reset_code
             ]);
-            Mail::to($user->email)->send(new forgotpasswordMail($user->first_name,$reset_code));
+            Mail::to($user->email)->send(new forgotPasswordMail($user->first_name,$reset_code));
          }
        
-        throw ValidationExeception::withMessages([
+        throw ValidationException::withMessages([
             'email'=>[trans($status)]
         ]);
     }
-    public function resetPassword($reset_code){
-        $password_reset_data=PasswordReset::where('reset_code')->first();
-      if(!$password_reset_data||carbon::now()->subMinutes((50)>$password));
-        return response()->json([
+    public function getresetPassword($reset_code){
+        $password_reset_data=PasswordReset::where('reset_code',$reset_code)->first();
+      if(!$password_reset_data||Carbon::now()->subMinutes((50))>$password_reset_data->created_at);
+        return redirect()->route('getresetPassword')->with( response()->json([
         'status'=>0,
         'message'=>'Lien expiré.'
-        ]);
+        ]));
         $request->validate([
             'email'=>'required|email',
             'password'=>'required|min:8|confirmed'
@@ -161,7 +164,8 @@ class AuthApi extends Controller
 }
 
 //Mise à jour du profil
-public function updateprofil(Request $request){
+public function updateprofile(Request $request){
+    
     $validator=validator::make($request->all(),[
         'name'=>'required|string|min:3',
         'prenom'=>'required|string|min:3',
@@ -170,9 +174,8 @@ public function updateprofil(Request $request){
         'residence'=>'nullable|max:50',
         'Sexe'=>'nullable', 
         'photo'=>'nullable|image|mimes:jpeg,jpg,png',
-        'email'=>'required|email|unique:users',
-        'type'=>'required|string|min:3',
-        'password'=>'required|min:8|confirmed',
+        'email'=>'required|email' ,
+        'type'=>'required|string|min:3'
        
    ]);
    if($validator->fails()){
@@ -182,6 +185,34 @@ public function updateprofil(Request $request){
     ],422);
     }
     $user=$request->user();
+    if($request->hasFile('photo')){
+        if($user->photo){
+            $old_path=public_path().'uploads/profil_images/'.$user->photo;
+            if(File::exists($old_path)){
+                File::delete($old_path);
+            }
+        }
+        $image_name='Photo-profil-' .time().'.'.$request->photo->extension();
+        $request->photo->move(public_path('/uploads/profil_images/'),$image_name);
+        
+    }else{
+        $image_name=$user->photo;
+    }
+     $user->update([
+        'name'=>$request->name,
+        'prenom'=>$request->prenom,
+        'email'=>$request->email,
+        'type'=>$request->type,
+        'telephone'=>$request->telephone,
+        'nationalite'=>$request->nationalite,
+        'photo'=>$request->photo,
+        'residence'=>$request->residence,
+        'sexe'=>$request->sexe,
+     ]);
+     return response()->json([
+        'message'=>'Profil mis à jour avec succés.',
+        
+    ],200);
+    }
     
-}
 }

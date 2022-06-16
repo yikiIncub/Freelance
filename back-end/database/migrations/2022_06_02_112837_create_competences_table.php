@@ -15,11 +15,16 @@ return new class extends Migration
     {
         Schema::create('competences', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
             $table->string('domaine');
             $table->string('specialite');
             $table->string('experience');
             $table->string('motivation');
             $table->timestamps();
+           
         });
     }
 

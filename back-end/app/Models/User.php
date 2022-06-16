@@ -23,9 +23,14 @@ class User extends Authenticatable
         'email',
         'type',
         'telephone',
+        'nationalite',
+        'photo',
+        'residence',
+        'sexe',
         'password',
 
     ];
+    public $appends=['profil_image_url'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -48,6 +53,14 @@ class User extends Authenticatable
     public function sendPasswordResetNotefication($token){
         $url='https://spa.test/reset-password?token='. $token;
         $this->notify(new ResetPasswordNotification($url));
+    }
+    public function getProfilImageUrlAttribute(){
+        if($this->photo){
+            return asset('/uploads/profil_images/'.$this->photo);
+        }else{
+          return 'https://ui-avatars.com/api/?name='.urldecode($this->name); 
+        }
+       
     }
     
 }

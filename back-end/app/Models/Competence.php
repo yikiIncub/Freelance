@@ -9,14 +9,14 @@ class Competence extends Model
 {
     use HasFactory;
     protected $fillable = [
-        
+        'user_id',
         'domaine',
         'specialite',
         'experience',
         'motivation',
-        'Sexe',
-        'password',
-
     ];
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     
 }
