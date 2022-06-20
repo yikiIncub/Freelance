@@ -10,7 +10,8 @@ use Illuminate\Support\facades\Validator;
 
 class CompetenceController extends Controller
 {
-    public function createCompetence(Request $request)
+    //enregistrement des competences
+  public function createCompetence(Request $request)
     {
         
        $validator=validator::make($request->all(),[
@@ -38,5 +39,50 @@ class CompetenceController extends Controller
         'data'=> $compt
       ],200);
     }
+
+
+
+    //Mis à jour des competences
+  public function updateCompetence(Request $request,$id){
+    
+  if($competence=Competence::where(['id'=>$id])->exists()){
+    $validator=validator::make($request->all(),[
+      'domaine'=>'required|string|min:3',
+      'specialite'=>'required|string|min:3',
+      'experience'=>'required|string|min:3',
+      'motivation'=>'required|string|min:8',
+ ]);
+   if($validator->fails()){
+        return response()->json([
+           'message'=>'invalide',
+           'errors'=>$validator->errors()
+  ],422);
+}
+    $competence=Competence::where([
+      'id'=>$id])->first();
+     $competence->update([
+          
+        'domaine'=>$request->domaine,
+        'specialite'=>$request->specialite,
+        'experience'=>$request->experience,
+        'motivation'=>$request->motivation,
+        'user_id'=>$request->user()->id
+
+     ]);
+     return response()->json([
+      'message'=>'Modification éffectué avec succés.',
+      'data'=> $competence
+      
+    ],200);
+  }else{
+    return response()->json([
+      'message'=>'Desolé.',
+      
+      
+    ],400);
+
+  }
+}
+
     
 }

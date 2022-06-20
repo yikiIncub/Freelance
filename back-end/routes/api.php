@@ -28,4 +28,5 @@ Route::middleware('auth:sanctum')->group(function(){
 //Competences 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('createCompetence',[CompetenceController::class,'createCompetence']);
+    Route::put('updateCompetence/{id}',[CompetenceController::class,'updateCompetence']);
 });
