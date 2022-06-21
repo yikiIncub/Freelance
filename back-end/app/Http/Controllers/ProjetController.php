@@ -103,4 +103,14 @@ class ProjetController extends Controller
          'data'=>$projet 
      ]);
    }
+   //......la liste de tout les projet.......//
+   public function listProjet(){
+    $projet=Projet::all();
+        return response()->json([
+          'status'=>1,
+          'message'=>'Les projet',
+          'data'=>$projet 
+      ]);
+
+   }
 }

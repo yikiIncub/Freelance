@@ -36,6 +36,8 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
 //.........Projet..............//
+    //.........la liste de tout les projet
+Route::get('listProjet',[ProjetController::class,'listProjet']);
 Route::middleware('auth:sanctum')->group(function(){
     //.....creation de projet...........//
     Route::post('createProjet',[ProjetController::class,'createProjet']);
