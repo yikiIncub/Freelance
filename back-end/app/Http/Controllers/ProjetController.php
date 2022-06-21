@@ -113,4 +113,19 @@ class ProjetController extends Controller
       ]);
 
    }
+   //.........Suppression de projet.........//
+   public function deleteProjet($id){
+    $user_id=Auth::user()->id;
+    if(Projet::where(['id'=>$id,'user_id'=>$user_id])->exists()){
+        $projet=Projet::where(['id'=>$id,'user_id'=>$user_id])->first();
+        $projet->delete();
+        return response()->json([
+          'message'=>'Le projet a été supprimé avec succès.',
+        ],200);
+    }else{
+      return response()->json([
+        'message'=>'Desolé.',
+      ],400);
+    }
+}
 }

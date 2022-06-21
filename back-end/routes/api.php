@@ -47,4 +47,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('ditailleProjet/{id}',[ProjetController::class,'ditailleProjet']);
     //.......Mise à jour d'un projet..........//
     Route::put('updateProjet/{id}',[ProjetController::class,'updateProjet']);
+    //...........Suppression de projet.............//
+    Route::get('deleteProjet/{id}',[ProjetController::class,'deleteProjet']);
 });
