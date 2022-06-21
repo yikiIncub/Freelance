@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Competence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\facades\Validator;
 
 class CompetenceController extends Controller
@@ -35,12 +36,10 @@ class CompetenceController extends Controller
        ]);
        $compt->load('user');
        return response()->json([
-        'message'=>'Données enréristrées avec succés.',
+        'message'=>'Opération effectuée avec succés..',
         'data'=> $compt
       ],200);
     }
-
-
 
     //Mis à jour des competences
   public function updateCompetence(Request $request,$id){
@@ -83,6 +82,14 @@ class CompetenceController extends Controller
 
   }
 }
-
+public function competence(){
+ // $user = Auth::user();
+  $competence=Competence::where([Auth::user()]);
+  return response()->json([
+      'status'=>1,
+      'message'=>'Les competences',
+      'data'=>$competence 
+  ]);
+}
     
 }

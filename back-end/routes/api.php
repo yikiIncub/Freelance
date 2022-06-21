@@ -3,13 +3,14 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthApi;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\CompetenceController;
 
 
 
 
 
-//Authentification
+//...............Authentification............/
 Route::post('register',[AuthApi::class,'register']);
 // Route::post('registerfreelance',[AuthApi::class,'registerfreelance']);
 Route::post('login',[AuthApi::class,'login']);
@@ -25,8 +26,19 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 //fin Authentification
 
-//Competences 
+//..........Competences.........// 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('createCompetence',[CompetenceController::class,'createCompetence']);
+    Route::get('competence',[CompetenceController::class,'competence']);
     Route::put('updateCompetence/{id}',[CompetenceController::class,'updateCompetence']);
+});
+
+
+
+//.........Projet..............//
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('createProjet',[ProjetController::class,'createProjet']);
+    Route::get('projet',[ProjetController::class,'projet']);
+    Route::get('ditailleProjet/{id}',[ProjetController::class,'ditailleProjet']);
+    Route::put('updateProjet/{id}',[ProjetController::class,'updateProjet']);
 });

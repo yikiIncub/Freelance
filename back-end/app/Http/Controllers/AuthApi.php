@@ -44,6 +44,7 @@ class AuthApi extends Controller
        $user->type=($request->type);
        $user-> password=Hash::make($request->password);
        $user->save();
+       $token=$user->createToken('auth_token')->plainTextToken;
        return response()->json([
            'status'=>1,
            'message'=>'Utilisateur créé avec succès'
@@ -100,7 +101,7 @@ class AuthApi extends Controller
         return response()->json([
             'status'=>1,
             'message'=>'information du profil',
-            'datas'=>Auth::user()        
+            'data'=>Auth::user()       
         ]);
     }
     //la deconnexion
@@ -174,7 +175,7 @@ public function updateprofile(Request $request){
         'residence'=>'nullable|max:50',
         'Sexe'=>'nullable', 
         'photo'=>'nullable|image|mimes:jpeg,jpg,png',
-        'email'=>'required|email' ,
+        'email'=>'required|email',
         'type'=>'required|string|min:3'
        
    ]);
@@ -211,8 +212,14 @@ public function updateprofile(Request $request){
      ]);
      return response()->json([
         'message'=>'Profil mis à jour avec succés.',
-        
+        'data'=>$user
     ],200);
     }
-    
+    public function change_password(Request $request){
+        $validator=validator::make($request->all(),[
+            'old_password'=>'required|min:8|',
+            'password'=>'required|min:8|confirmed',
+            
+       ]);
+    }
 }
