@@ -93,4 +93,14 @@ class ProjetController extends Controller
         ],400);
       }
   }
+  //......Liste des projet d'un utilisateur........//
+  public function userProjet(){
+    $user_id = Auth::user()->id;
+     $projet=Projet::where('user_id',$user_id)->get();
+     return response()->json([
+         'status'=>1,
+         'message'=>'Les projet',
+         'data'=>$projet 
+     ]);
+   }
 }

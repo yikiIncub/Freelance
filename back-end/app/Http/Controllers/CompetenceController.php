@@ -83,8 +83,8 @@ class CompetenceController extends Controller
   }
 }
 public function competence(){
- // $user = Auth::user();
-  $competence=Competence::where([Auth::user()]);
+ $user_id = Auth::user()->id;
+  $competence=Competence::where('user_id',$user_id)->get();
   return response()->json([
       'status'=>1,
       'message'=>'Les competences',
