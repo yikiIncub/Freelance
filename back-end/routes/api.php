@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthApi;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\CompetenceController;
+use App\Http\Controllers\CommentaireController;
 
 
 
@@ -50,4 +51,15 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::put('updateProjet/{id}',[ProjetController::class,'updateProjet']);
     //...........Suppression de projet.............//
     Route::get('deleteProjet/{id}',[ProjetController::class,'deleteProjet']);
+});
+
+
+
+//............Les commentaire..........//
+Route::middleware('auth:sanctum')->group(function(){
+    //........Creer commentaire.............//
+    Route::post('create/{projet_id}',[CommentaireController::class,'create']);
+    //............liste des commentaire...........//
+    Route::get('list/{projet_id}',[CommentaireController::class,'list']);
+    //............
 });
