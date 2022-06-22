@@ -207,6 +207,7 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
+    'Carbon' => Illuminate\Support\Carbon::class,
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
