@@ -124,7 +124,7 @@ class ProjetController extends Controller
         ],200);
     }else{
       return response()->json([
-        'message'=>'Desolé.',  
+        'message'=>'Desolé.',
       ],400);
     }
 }
