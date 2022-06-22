@@ -20,6 +20,7 @@ Route::post('resetPassword',[AuthApi::class,'resetPassword']);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('profil' ,[AuthApi::class,'profil']);
+    Route::post('change_password',[AuthApi::class,'change_password']);
     Route::post('logout',[AuthApi::class,'logout']);
     Route::post('updateprofile',[AuthApi::class,'updateprofile']);
    
