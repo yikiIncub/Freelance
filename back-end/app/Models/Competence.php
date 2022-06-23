@@ -9,19 +9,16 @@ class Competence extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
         'domaine',
         'specialite',
         'experience',
         'motivation',
     ];
-    
+     
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'competence_users');
     }
-        // public function getHumanReadableCreatedAtAttribute(){
-        //     return $this ->created_at->difforHumans();
-        // }
+        
     
 }

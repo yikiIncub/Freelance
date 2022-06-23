@@ -17,4 +17,7 @@ class Commentaire extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+     public function getHumanReadableCreatedAtAttribute(){
+            return $this ->created_at->difforHumans();
+        }
 }

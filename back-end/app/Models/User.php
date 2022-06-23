@@ -62,6 +62,9 @@ class User extends Authenticatable
         }
        
     }
+    public function competence(){
+        return $this->belongsTo(Competence::class,'competence_users');
+    }
     
     
 }

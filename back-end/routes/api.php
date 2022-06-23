@@ -61,5 +61,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('create/{projet_id}',[CommentaireController::class,'create']);
     //............liste des commentaire...........//
     Route::get('list/{projet_id}',[CommentaireController::class,'list']);
-    //............
+    //............Suppression de commentaire............//
+    Route::delete('deleteCommantaire/{projet_id}',[CommentaireController::class,'list']); 
+
 });
