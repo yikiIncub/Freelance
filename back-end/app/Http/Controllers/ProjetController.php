@@ -93,6 +93,7 @@ class ProjetController extends Controller
         ],400);
       }
   }
+ //.......Detaille de Projet Quelconque............//
   public function detProjet($id){
     if(Projet::where(['id'=>$id])->exists()){
         $projet=Projet::where(['id'=>$id])->get();
