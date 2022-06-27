@@ -17,10 +17,7 @@ class CompetenceController extends Controller
     {
         
        $validator=validator::make($request->all(),[
-            'domaine'=>'required|string|min:3',
-            'specialite'=>'required|string|min:3',
-            'experience'=>'required|string|min:3',
-            'motivation'=>'required|string|min:8',
+            'libelle'=>'required|string|min:3',
        ]);
        if($validator->fails()){
         return response()->json([
@@ -29,13 +26,9 @@ class CompetenceController extends Controller
         ],422);
        }
        $compt=Competence::create([
-             'domaine'=>$request->domaine,
-             'specialite'=>$request->specialite,
-             'experience'=>$request->experience,
-             'motivation'=>$request->motivation,
-             'user_id'=>$request->user()->id
+             'libelle'=>$request->libelle,
        ]);
-       $compt->load('user');
+       $compt->save();
        return response()->json([
         'message'=>'Opération effectuée avec succés..',
         'data'=> $compt

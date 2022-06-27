@@ -78,8 +78,8 @@ class ProjetController extends Controller
     
       }
   }
-  //.......Detaille de Projet............//
-  public function ditailleProjet($id){
+  //.......Detaille de Projet pour un utilisateur............//
+  public function detailleProjet($id){
       $user_id=Auth::user()->id;
       if(Projet::where(['id'=>$id,'user_id'=>$user_id])->exists()){
           $projet=Projet::where(['id'=>$id,'user_id'=>$user_id])->get();
@@ -93,6 +93,19 @@ class ProjetController extends Controller
         ],400);
       }
   }
+  public function detProjet($id){
+    if(Projet::where(['id'=>$id])->exists()){
+        $projet=Projet::where(['id'=>$id])->get();
+        return response()->json([
+          'message'=>'Detaille du projet.',
+          'data'=>$projet
+        ],200);
+    }else{
+      return response()->json([
+        'message'=>'Desolé.',
+      ],400);
+    }
+}
   //......Liste des projet d'un utilisateur........//
   public function userProjet(){
     $user_id = Auth::user()->id;
