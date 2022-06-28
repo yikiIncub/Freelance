@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthApi;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\ProjetController;
+use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\CompetenceController;
 
 
@@ -37,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
 //.........Projet..............//
     //.........la liste de tout les projet
+Route::get('detProjet/{id}',[ProjetController::class,'detProjet']);
 Route::get('listProjet',[ProjetController::class,'listProjet']);
 Route::middleware('auth:sanctum')->group(function(){
     //.....creation de projet...........//
@@ -44,7 +47,7 @@ Route::middleware('auth:sanctum')->group(function(){
     //......Liste des projet d'un utulisateur.....//
     Route::get('userProjet',[ProjetController::class,'userProjet']);
     //.......Detaille sur un projet..........//
-    Route::get('ditailleProjet/{id}',[ProjetController::class,'ditailleProjet']);
+    Route::get('detailleProjet/{id}',[ProjetController::class,'detailleProjet']);
     //.......Mise à jour d'un projet..........//
     Route::put('updateProjet/{id}',[ProjetController::class,'updateProjet']);
     //...........Suppression de projet.............//

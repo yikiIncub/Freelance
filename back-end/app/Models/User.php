@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Competence;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -61,6 +62,9 @@ class User extends Authenticatable
           return 'https://ui-avatars.com/api/?name='.urldecode($this->name); 
         }
        
+    }
+    public function competence(){
+        return $this->belongsToMany(Competence::class);
     }
     
     
