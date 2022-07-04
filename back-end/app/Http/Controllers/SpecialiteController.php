@@ -34,5 +34,38 @@ class SpecialiteController extends Controller
         'data'=> $specilite
       ],200);
     }
+
 }
+public function updateSpecialite(Request $request,$id){
+    if($specialite=Specialite::where(['id'=>$id])->exists()){
+        $validator=validator::make($request->all(),[
+            'libelle'=>'required'
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'message'=>'invalide',
+                'errors'=>$validator->errors()
+            ],422);
+        }$specialite=Specialite::where(['id'=>$id])->first();
+        $specialite->update([
+             'libelle'=>$request->libelle
+        ]);
+        return response()->json([
+            'message'=>'Modification éffectué avec succés.',
+            'data'=> $specialite
+            ],200);
+    }else{
+        return response()->json([
+         'message'=>'Desolé.',
+          ],400);
+        }
+}
+public function listSpecialite(){
+    $specialite=Specialite::all();
+        return response()->json([
+          'status'=>1,
+          'message'=>'Les projet',
+          'data'=>$specialite 
+      ]);
+    }
 }

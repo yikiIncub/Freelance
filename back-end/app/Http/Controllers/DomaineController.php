@@ -7,11 +7,11 @@ use App\Models\Competence;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Validator;
 
-class DomaineController extends Controller
-{
+class DomaineController extends Controller{
+
      // .........Creation de domaine........//
-     public function createDomaine($competence_id,Request $request)
-     {
+     public function createDomaine($competence_id,Request $request) {
+    
         $competence=Competence::where('id',$competence_id)->first();
         if($competence){
             $validator=validator::make($request->all(),[
@@ -31,7 +31,39 @@ class DomaineController extends Controller
         return response()->json([
          'message'=>'Opération effectuée avec succés.',
          'data'=> $domaine
-       ],200);
-     }
+        ],200);
+    }
+  }
+  public function updateDomaine(Request $request,$id){
+    if($domanine=Domaine::where(['id'=>$id])->exists()){
+        $validator=validator::make($request->all(),[
+            'libelle'=>'required'
+        ]);
+        if($validator->fails()){
+            return response()->json([
+                'message'=>'invalide',
+                'errors'=>$validator->errors()
+            ],422);
+        }$domanine=Domaine::where(['id'=>$id])->first();
+        $domanine->update([
+             'libelle'=>$request->libelle
+        ]);
+        return response()->json([
+            'message'=>'Modification éffectué avec succés.',
+            'data'=> $domanine
+            ],200);
+    }else{
+        return response()->json([
+         'message'=>'Desolé.',
+          ],400);
+        }
 }
+    public function listDomaine(){
+      $domaine=Domaine::all();
+      return response()->json([
+        'status'=>1,
+        'message'=>'Les projet',
+        'data'=>$domaine
+       ]);
+    }
 }

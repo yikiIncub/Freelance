@@ -40,10 +40,8 @@ class CompetenceController extends Controller
     
   if($competence=Competence::where(['id'=>$id])->exists()){
     $validator=validator::make($request->all(),[
-      'domaine'=>'required|string|min:3',
-      'specialite'=>'required|string|min:3',
-      'experience'=>'required|string|min:3',
-      'motivation'=>'required|string|min:8',
+      'libelle'=>'required',
+      
  ]);
    if($validator->fails()){
         return response()->json([
@@ -55,12 +53,7 @@ class CompetenceController extends Controller
       'id'=>$id])->first();
      $competence->update([
           
-        'domaine'=>$request->domaine,
-        'specialite'=>$request->specialite,
-        'experience'=>$request->experience,
-        'motivation'=>$request->motivation,
-        'user_id'=>$request->user()->id
-
+        'libelle'=>$request->libelle,
      ]);
      return response()->json([
       'message'=>'Modification éffectué avec succés.',

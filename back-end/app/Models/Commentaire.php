@@ -11,8 +11,7 @@ class Commentaire extends Model
     protected $fillable = [
         'message',
         'user_id',
-        'projet_id',
-        
+        'projet_id', 
     ];
     public function user(){
         return $this->belongsTo(User::class);

@@ -34,4 +34,37 @@ class NiveauController extends Controller
        ],200);
      }
 }
+
+public function updateNiveau(Request $request,$id){
+  if($niveau=Niveau::where(['id'=>$id])->exists()){
+      $validator=validator::make($request->all(),[
+          'libelle'=>'required'
+      ]);
+      if($validator->fails()){
+          return response()->json([
+              'message'=>'invalide',
+              'errors'=>$validator->errors()
+          ],422);
+      }$niveau=Niveau::where(['id'=>$id])->first();
+      $niveau->update([
+           'libelle'=>$request->libelle
+      ]);
+      return response()->json([
+          'message'=>'Modification éffectué avec succés.',
+          'data'=> $niveau
+          ],200);
+  }else{
+      return response()->json([
+       'message'=>'Desolé.',
+        ],400);
+      }
+}
+public function listNiveau(){
+  $niveau=Niveau::all();
+      return response()->json([
+        'status'=>1,
+        'message'=>'Les projet',
+        'data'=>$niveau 
+    ]);
+  }
 }

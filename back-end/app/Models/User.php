@@ -66,6 +66,8 @@ class User extends Authenticatable
     public function competence(){
         return $this->belongsToMany(Competence::class);
     }
-    
+    public function projet(){
+        return $this->belongsToMany(Projet::class);
+    }
     
 }

@@ -9,6 +9,8 @@ use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\CompetenceUserController;
+use App\Http\Controllers\PostulantProjetController;
 
 
 
@@ -41,8 +43,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
 //.........Projet..............//
-    //.........la liste de tout les projet
+    //...........Detaille sur un projet quelconque.........// 
 Route::get('detProjet/{id}',[ProjetController::class,'detProjet']);
+    //.........la liste de tout les projet
 Route::get('listProjet',[ProjetController::class,'listProjet']);
 Route::middleware('auth:sanctum')->group(function(){
     //.....creation de projet...........//
@@ -54,7 +57,7 @@ Route::middleware('auth:sanctum')->group(function(){
     //.......Mise à jour d'un projet..........//
     Route::put('updateProjet/{id}',[ProjetController::class,'updateProjet']);
     //...........Suppression de projet.............//
-    Route::get('deleteProjet/{id}',[ProjetController::class,'deleteProjet']);
+    Route::delete('deleteProjet/{id}',[ProjetController::class,'deleteProjet']);
 });
 
 
@@ -67,38 +70,48 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('list/{projet_id}',[CommentaireController::class,'list']);
     //............Suppression de commentaire............//
     Route::delete('deleteCommantaire/{projet_id}',[CommentaireController::class,'list']); 
-
 });
 
 //............Les Domaine..........//
+    //............liste des Domaine...........//
+ Route::get('listDomaine',[DomaineController::class,'listDomaine']);
 Route::middleware('auth:sanctum')->group(function(){
     //........Creer Domaine.............//
     Route::post('createDomaine/{competence_id}',[DomaineController::class,'createDomaine']);
-    //............liste des Domaine...........//
-    Route::get('listDomaine',[DomaineController::class,'listDomaine']);
     //............Suppression de Domaine............//
     Route::delete('deleteDomaine',[DomaineController::class,'deleteDomaine']); 
 
 });
 
 //............Les Niveau..........//
+    //............liste des Niveau...........//
+Route::get('listNiveau',[NiveauController::class,'listNiveau']);
 Route::middleware('auth:sanctum')->group(function(){
     //........Creer Niveau.............//
     Route::post('createNiveau/{domaine_id}',[NiveauController::class,'createNiveau']);
-    //............liste des Niveau...........//
-    Route::get('listDomaine',[NiveauController::class,'listNiveau']);
     //............Suppression de Niveau............//
-    Route::delete('deleteDomaine',[NiveauController::class,'deleteNiveau']); 
+    Route::delete('deleteNiveau',[NiveauController::class,'deleteNiveau']); 
 
 });
 
 //............Les Specialite..........//
+    //............liste des Specialite...........//
+Route::get('listSpecialite',[SpecialiteController::class,'listSpecialite']);
 Route::middleware('auth:sanctum')->group(function(){
     //........Creer Specialite.............//
     Route::post('createSpecialite/{domaine_id}',[SpecialiteController::class,'createSpecialite']);
-    //............liste des Niveau...........//
-    Route::get('listSpecialitee',[SpecialiteController::class,'listSpecialite']);
     //............Suppression de Niveau............//
     Route::delete('deleteDSpecialite',[SpecialiteController::class,'deleteSpecialite']); 
 
+});
+
+//Competence User
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('competence_user/{user_id}/{competence_id}',[CompetenceUserController::class,'competence_user']);
+
+});
+
+
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('projet_user/{user_id}/{projet_id}',[PostulantProjetController::class,'projet_user']);
 });

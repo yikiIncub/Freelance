@@ -71,10 +71,10 @@ class ProjetController extends Controller
                 'data'=> $projet
                 
                 ],200);
-              }else{
-                return response()->json([
-                  'message'=>'Desolé.',
-                ],400);
+        }else{
+            return response()->json([
+             'message'=>'Desolé.',
+              ],400);
     
       }
   }
