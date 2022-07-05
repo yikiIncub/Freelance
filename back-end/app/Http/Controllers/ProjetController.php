@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Projet;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\facades\Validator;
@@ -10,15 +11,17 @@ use Illuminate\Support\facades\Validator;
 class ProjetController extends Controller
 {
     // .........Creation de projet........//
-    public function createProjet(Request $request)
+    public function createProjet($categorie_id,Request $request)
+    
     {
-        
+      $categorie=Categorie::where('id',$categorie_id)->first();
+     if($categorie) {
        $validator=validator::make($request->all(),[
             'titre'=>'required|string|min:5',
             'description'=>'required|string|min:10',
             'budget'=>'required|string|min:5',
             'competence'=>'required|string|min:3',
-            'delai'=>'required'
+            'delai'=>'required',
        ]);
        if($validator->fails()){
         return response()->json([
@@ -32,7 +35,8 @@ class ProjetController extends Controller
              'budget'=>$request->budget,
              'competence'=>$request->competence,
              'delai'=>$request->delai,
-             'user_id'=>$request->user()->id
+             'user_id'=>$request->user()->id,
+             'categorie_id'=>$categorie->id
        ]);
        $projet->load('user');
        return response()->json([
@@ -40,6 +44,8 @@ class ProjetController extends Controller
         'data'=> $projet
       ],200);
     }
+    }
+
     //.........Modification de projet............//
     public function updateProjet(Request $request,$id){
     
@@ -117,6 +123,23 @@ class ProjetController extends Controller
          'data'=>$projet 
      ]);
    }
+
+   //......Liste des projet par categorie........//
+   public function projetParCategorie($categorie_id,Request $request){
+    $categorie=Categorie::where('id',$categorie_id)->first();
+    if($categorie){
+       
+        $projet=Projet::where('categorie_id',$categorie_id)->get();
+        return response()->json([
+            'message'=>'Les prejet',
+            'data'=>$projet
+        ],200);
+     }else{
+        return response()->json([
+            'message'=>'Pas de projet',
+         ],422);
+     }
+}
    //......la liste de tout les projet.......//
    public function listProjet(){
     $projet=Projet::all();

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\DomaineController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CommentaireController;
@@ -49,9 +50,11 @@ Route::get('detProjet/{id}',[ProjetController::class,'detProjet']);
 Route::get('listProjet',[ProjetController::class,'listProjet']);
 Route::middleware('auth:sanctum')->group(function(){
     //.....creation de projet...........//
-    Route::post('createProjet',[ProjetController::class,'createProjet']);
+    Route::post('createProjet/{categorie_id}',[ProjetController::class,'createProjet']);
     //......Liste des projet d'un utulisateur.....//
     Route::get('userProjet',[ProjetController::class,'userProjet']);
+    //......Liste des projet par categories
+    Route::get('projetParCategorie/{categorie_id}',[ProjetController::class,'projetParCategorie']);
     //.......Detaille sur un projet..........//
     Route::get('detailleProjet/{id}',[ProjetController::class,'detailleProjet']);
     //.......Mise à jour d'un projet..........//
@@ -74,7 +77,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
 //............Les Domaine..........//
     //............liste des Domaine...........//
- Route::get('listDomaine',[DomaineController::class,'listDomaine']);
+Route::get('listDomaine',[DomaineController::class,'listDomaine']);
 Route::middleware('auth:sanctum')->group(function(){
     //........Creer Domaine.............//
     Route::post('createDomaine/{competence_id}',[DomaineController::class,'createDomaine']);
@@ -101,7 +104,7 @@ Route::middleware('auth:sanctum')->group(function(){
     //........Creer Specialite.............//
     Route::post('createSpecialite/{domaine_id}',[SpecialiteController::class,'createSpecialite']);
     //............Suppression de Niveau............//
-    Route::delete('deleteDSpecialite',[SpecialiteController::class,'deleteSpecialite']); 
+    Route::delete('deleteSpecialite',[SpecialiteController::class,'deleteSpecialite']); 
 
 });
 
@@ -115,3 +118,13 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('projet_user/{user_id}/{projet_id}',[PostulantProjetController::class,'projet_user']);
 });
+
+
+Route::get('listCategorie',[CategorieController::class,'listCategorie']);
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('createCategorie',[CategorieController::class,'createCategorie']);
+    Route::put('updateCategorie/{id}',[CategorieController::class,'updateCategorie']);
+    Route::delete('deleteCategorie/{id}',[CategorieController::class,'deleteCategorie']); 
+
+}); 
+
