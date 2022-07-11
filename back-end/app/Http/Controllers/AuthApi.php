@@ -221,24 +221,5 @@ public function updateprofile(Request $request){
             'password'=>'required|min:8|confirmed',
             
        ]);
-       if($validator->fails()){
-        return response()->json([
-            'message'=>'invalide',
-            'errors'=>$validator->errors()
-        ],422);
-        }
-        $user=$request->user();
-        if(Hash::check($request->old_password,$user->password)){
-            $user->update([
-                'password'=>hash::make($request->password)
-            ]);
-            return response()->json([
-                'message'=>'Modification effectuée avec succés',
-            ],200);
-        }else{
-            return response()->json([
-                'message'=>'Mot de passe incorrect',
-            ],400);
-        }
     }
 }

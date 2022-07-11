@@ -15,13 +15,8 @@ class Competence extends Model
     protected $fillable = [
         'libelle',
     ];
-     
-    public function domaine(){
-        return $this->belongsTo(Domaine::class,'domaines');
-    }
     public function user(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
-        
     
 }
