@@ -11,10 +11,12 @@ use Illuminate\Support\facades\Validator;
 class ProjetController extends Controller
 {
     // .........Creation de projet........//
-    public function createProjet($categorie_id,Request $request)
+    public function createProjet(Request $request)
     
     {
-      $categorie=Categorie::where('id',$categorie_id)->first();
+      $categori=$request['categorie_id'];
+
+      $categorie=Categorie::where('id',$categori)->first();
      if($categorie) {
        $validator=validator::make($request->all(),[
             'titre'=>'required|string|min:5',

@@ -51,7 +51,7 @@ Route::get('detProjet/{id}',[ProjetController::class,'detProjet']);
 Route::get('listProjet',[ProjetController::class,'listProjet']);
 Route::middleware('auth:sanctum')->group(function(){
     //.....creation de projet...........//
-    Route::post('createProjet/{categorie_id}',[ProjetController::class,'createProjet']);
+    Route::post('createProjet',[ProjetController::class,'createProjet']);
     //......Liste des projet d'un utulisateur.....//
     Route::get('userProjet',[ProjetController::class,'userProjet']);
     //......Liste des projet par categories
