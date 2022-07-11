@@ -40,7 +40,7 @@ class CompetenceController extends Controller
     
   if($competence=Competence::where(['id'=>$id])->exists()){
     $validator=validator::make($request->all(),[
-      'libelle'=>'required',
+      'libelle'=>'required|string|min:3',
       
  ]);
    if($validator->fails()){

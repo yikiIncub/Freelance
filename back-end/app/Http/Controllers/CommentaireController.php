@@ -32,7 +32,7 @@ class CommentaireController extends Controller
                 'data'=>$commentaire
                 ],200);
 
-
+        
         }else{
              return response()->json([
                 'message'=>'Pas de projet',

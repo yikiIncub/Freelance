@@ -90,4 +90,5 @@ public function deleteCategorie($id){
     ],400);
   }
 }
+
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\FreelanceController;
 use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CommentaireController;
@@ -66,11 +67,11 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
 //............Les commentaire..........//
+//............liste des commentaire d'un projet...........//
+Route::get('list/{projet_id}',[CommentaireController::class,'list']);
 Route::middleware('auth:sanctum')->group(function(){
     //........Creer commentaire.............//
     Route::post('create/{projet_id}',[CommentaireController::class,'create']);
-    //............liste des commentaire...........//
-    Route::get('list/{projet_id}',[CommentaireController::class,'list']);
     //............Suppression de commentaire............//
     Route::delete('deleteCommantaire/{projet_id}',[CommentaireController::class,'list']); 
 });
@@ -128,3 +129,5 @@ Route::middleware('auth:sanctum')->group(function(){
 
 }); 
 
+
+Route::get('listeFreelance',[FreelanceController::class,'listeFreelance']);

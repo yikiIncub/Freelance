@@ -33,7 +33,7 @@ class ProjetController extends Controller
              'titre'=>$request->titre,
              'description'=>$request->description,
              'budget'=>$request->budget,
-             'competence'=>$request->competence,
+             'competence'=>$request->competence, 
              'delai'=>$request->delai,
              'user_id'=>$request->user()->id,
              'categorie_id'=>$categorie->id

@@ -19,8 +19,8 @@ class CompetenceUserController extends Controller
         if ($user && $competence) {
             $user->competence()->attach($competence);
             return response()->json([
-                'competences' => $user->competence,
                 'success' => 'competence crée avec succès',
+                'competences' => $user->competence,
             ], 200);
         } else {
             return response()->json([
