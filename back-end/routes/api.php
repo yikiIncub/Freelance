@@ -9,13 +9,11 @@ use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\FreelanceController;
 use App\Http\Controllers\CompetenceController;
-<<<<<<< HEAD
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\CompetenceUserController;
 use App\Http\Controllers\PostulantProjetController;
-=======
->>>>>>> 8c3a56997dde0a214f2c99f75a68806779c1e08f
+
 
 
 
@@ -65,7 +63,7 @@ Route::middleware('auth:sanctum')->group(function(){
     //...........Suppression de projet.............//
     Route::delete('deleteProjet/{id}',[ProjetController::class,'deleteProjet']);
 });
-<<<<<<< HEAD
+
 
 
 
@@ -134,5 +132,4 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
 Route::get('listeFreelance',[FreelanceController::class,'listeFreelance']);
-=======
->>>>>>> 8c3a56997dde0a214f2c99f75a68806779c1e08f
+
