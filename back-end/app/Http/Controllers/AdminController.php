@@ -31,11 +31,9 @@ class AdminController extends Controller
        $admin-> password=Hash::make($request->password);
        $admin->save();
        $token=$admin->createToken('auth_token')->plainTextToken;
-       return response()->json([
+       return response()->json([ 
            'status'=>1,
            'message'=>'Utilisateur créé avec succès'  
        ]);
-    
-        
     }
 }

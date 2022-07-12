@@ -17,7 +17,7 @@ class Domaine extends Model
     ];
     use HasFactory;
     public function competence(){
-        return $this->belongsTo(Competence::class,'competences');
+        return $this->belongsTo(Competence::class,'competence');
     }
     
     

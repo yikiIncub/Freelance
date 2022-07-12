@@ -70,12 +70,24 @@ class CompetenceController extends Controller
 }
 public function competence(){
  $user_id = Auth::user()->id;
-  $competence=Competence::where('user_id',$user_id)->get();
+  $competence=Competence::where('id',$user_id)->get();
   return response()->json([
       'status'=>1,
       'message'=>'Les competences',
       'data'=>$competence 
   ]);
 }
-    
+public function deleteCompetence($id){
+  if(Competence::where(['id'=>$id])->exists()){
+      $competence=Competence::where(['id'=>$id])->first();
+      $competence->delete();
+      return response()->json([
+        'message'=>'La competence a été supprimé avec succès.',
+      ],200);
+  }else{
+    return response()->json([
+      'message'=>'Desolé.',  
+    ],400);
+  }
+}
 }

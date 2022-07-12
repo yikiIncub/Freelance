@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('createCompetence',[CompetenceController::class,'createCompetence']);
     Route::get('competence',[CompetenceController::class,'competence']);
     Route::put('updateCompetence/{id}',[CompetenceController::class,'updateCompetence']);
+    Route::delete('deleteCompetence/{id}',[CompetenceController::class,'deleteCompetence']);
 });
 
 
@@ -78,12 +79,9 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 //............Les Domaine..........//
-    //............liste des Domaine...........//
 Route::get('listDomaine',[DomaineController::class,'listDomaine']);
 Route::middleware('auth:sanctum')->group(function(){
-    //........Creer Domaine.............//
-    Route::post('createDomaine/{competence_id}',[DomaineController::class,'createDomaine']);
-    //............Suppression de Domaine............//
+    Route::post('createDomaine',[DomaineController::class,'createDomaine']);
     Route::delete('deleteDomaine',[DomaineController::class,'deleteDomaine']); 
 
 });
@@ -100,13 +98,11 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 //............Les Specialite..........//
-    //............liste des Specialite...........//
 Route::get('listSpecialite',[SpecialiteController::class,'listSpecialite']);
 Route::middleware('auth:sanctum')->group(function(){
-    //........Creer Specialite.............//
-    Route::post('createSpecialite/{domaine_id}',[SpecialiteController::class,'createSpecialite']);
-    //............Suppression de Niveau............//
+    Route::post('createSpecialite',[SpecialiteController::class,'createSpecialite']);
     Route::delete('deleteSpecialite',[SpecialiteController::class,'deleteSpecialite']); 
+    Route::delete('updateSpecialite/{id}',[SpecialiteController::class,'updateSpecialite']); 
 
 });
 

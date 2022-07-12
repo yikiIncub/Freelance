@@ -10,9 +10,9 @@ use Illuminate\Support\facades\Validator;
 class DomaineController extends Controller{
 
      // .........Creation de domaine........//
-     public function createDomaine($competence_id,Request $request) {
-    
-        $competence=Competence::where('id',$competence_id)->first();
+     public function createDomaine(Request $request) {
+        $comp=$request['competence_id'];
+        $competence=Competence::where('id',$comp)->first();
         if($competence){
             $validator=validator::make($request->all(),[
                 'libelle'=>'required',

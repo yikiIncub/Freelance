@@ -45,12 +45,17 @@ class ProjetController extends Controller
         'message'=>'Opération effectuée avec succés.',
         'data'=> $projet
       ],200);
+    }else{
+      return response()->json([
+        'message'=>'veillez selectionne la categorie exacte.',
+      ],201);
     }
     }
 
     //.........Modification de projet............//
     public function updateProjet(Request $request,$id){
-    
+      $categori=$request['categorie_id'];
+      $categorie=Categorie::where('id',$categori)->first();
       if($projet=Projet::where(['id'=>$id])->exists()){
             $validator=validator::make($request->all(),[
                 'titre'=>'required|string|min:5',
@@ -72,7 +77,8 @@ class ProjetController extends Controller
                   'budget'=>$request->budget,
                   'competence'=>$request->competence,
                   'delai'=>$request->delai,
-                  'user_id'=>$request->user()->id
+                  'user_id'=>$request->user()->id,
+                  'categorie_id'=>$categorie->id
               ]);
               return response()->json([
                 'message'=>'Modification éffectué avec succés.',

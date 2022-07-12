@@ -11,9 +11,10 @@ use Illuminate\Support\facades\Validator;
 class SpecialiteController extends Controller
 {
     // .........Creation de Niveau........//
-    public function createSpecialite($domaine_id,Request $request)
+    public function createSpecialite(Request $request)
     {
-       $domaine=Domaine::where('id',$domaine_id)->first();
+       $spt=$request['domaine_id'];
+       $domaine=Domaine::where('id',$spt)->first();
        if($domaine){
            $validator=validator::make($request->all(),[
                'libelle'=>'required',
