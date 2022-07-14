@@ -5,24 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Projet extends Model
+class Postulant extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'projet_id',
         'user_id',
-        'categorie_id',
-        'titre',
         'description',
         'budget',
         'delai',
-        'competence',
-        'temps_realisation',
-        'disponibilite'
+        'temps_realisation'
     ];
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
-    public function postulant(){
-        return $this->belongsToMany(Postulant::class);
+    public function projet(){
+        return $this->belongsToMany(Projet::class);
     }
 }

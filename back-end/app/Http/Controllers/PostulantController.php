@@ -2,20 +2,82 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Projet;
+use App\Models\Postulant;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\facades\Validator;
 
 class PostulantController extends Controller
 {
-     //........Postuler...........//
-    public function create(Request $request)
+     //........Postuler à un projet...........//
+    public function postuler(Request $request)
     {
        
-        $postulant=Postulant::create ([
-             'user_id'=>$request->user()->id
+        $proj=$request['projet_id'];
+
+        $projet=Projet::where('id',$proj)->first();
+        if($projet)
+        {
+            $validator=validator::make($request->all(),[
+                'description'=>'required',
+                'budget'=>'required',
+                'delai'=>'required',
+                'temps_realisation'=>'required',
+           ]);
+            if($validator->fails()){
+                return response()->json([
+                'message'=>'invalide',
+                'errors'=>$validator->errors()
+                ],422);
+            }
+            $postulant=Postulant::create ([
+                'user_id'=>$request->user()->id,
+                'projet_id'=>$projet->id, 
+                'description'=>$request->description,
+                'budget'=>$request->budget,
+                'delai'=>$request->delai,
+                'temps_realisation'=>$request->temps_realisation
+
             ]);
-            return response()->json([
-                'message'=>'Commentaire créé avec succés',
-                'data'=>$commentaire
+                return response()->json([
+                    'message'=>'Requête effectuée avec succés',
+                    'data'=>$postulant
                 ],200); 
+        }
+    }
+    public function updateInfo(Request $request,$id)
+    {
+        $projet=$request['projet_id'];
+        $projet=Projet::where('id',$projet)->first();
+        if($postulant=Postulant::where(['id'=>$id])->exists())
+        {
+            $validator=validator::make($request->all(),[
+                'description'=>'required',
+                'budget'=>'required',
+                'delai'=>'required',
+                'temps_realisation'=>'required',
+           ]);
+            if($validator->fails()){
+                return response()->json([
+                'message'=>'invalide',
+                'errors'=>$validator->errors()
+                ],422);
+            }
+            $postulant=Postulant::where(['id'=>$id])->first();
+            $postulant->update([
+                'user_id'=>$request->user()->id,
+                'projet_id'=>$projet->id, 
+                'description'=>$request->description,
+                'budget'=>$request->budget,
+                'delai'=>$request->delai,
+                'temps_realisation'=>$request->temps_realisation
+
+            ]);
+                return response()->json([
+                    'message'=>'Vos informations ont été modifiées avec succés',
+                    'data'=>$postulant
+                ],200);
+        }
     }
 }

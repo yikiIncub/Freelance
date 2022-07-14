@@ -23,6 +23,9 @@ class ProjetController extends Controller
             'description'=>'required|string|min:10',
             'budget'=>'required|string|min:5',
             'competence'=>'required|string|min:3',
+            'temps_realisation'=>'required',
+            'disponibilite'=>'required|string|min:3',
+            'competence'=>'required|string|min:3',
             'delai'=>'required',
        ]);
        if($validator->fails()){
@@ -35,7 +38,9 @@ class ProjetController extends Controller
              'titre'=>$request->titre,
              'description'=>$request->description,
              'budget'=>$request->budget,
-             'competence'=>$request->competence, 
+             'competence'=>$request->competence,
+             'disponibilite'=>$request->disponibilite,
+             'temps_realisation'=>$request->temps_realisation,
              'delai'=>$request->delai,
              'user_id'=>$request->user()->id,
              'categorie_id'=>$categorie->id
@@ -62,7 +67,9 @@ class ProjetController extends Controller
                 'description'=>'required|string|min:10',
                 'budget'=>'required|string|min:5',
                 'competence'=>'required|string|min:3',
-                'delai'=>'required'
+                'temps_realisation'=>'required',
+                'disponibilite'=>'required',
+                'delai'=>'required',
             ]);
               if($validator->fails()){
                     return response()->json([
@@ -77,13 +84,14 @@ class ProjetController extends Controller
                   'budget'=>$request->budget,
                   'competence'=>$request->competence,
                   'delai'=>$request->delai,
+                  'temps_realisation'=>$request->temps_realisation,
+                  'disponibilite'=>$request->disponibilite,
                   'user_id'=>$request->user()->id,
                   'categorie_id'=>$categorie->id
               ]);
               return response()->json([
                 'message'=>'Modification éffectué avec succés.',
-                'data'=> $projet
-                
+                'data'=>$projet
                 ],200);
         }else{
             return response()->json([

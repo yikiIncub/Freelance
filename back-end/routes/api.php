@@ -8,7 +8,9 @@ use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\FreelanceController;
+use App\Http\Controllers\PostulantController;
 use App\Http\Controllers\CompetenceController;
+use App\Http\Controllers\ProjetUserController;
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\CompetenceUserController;
@@ -112,13 +114,13 @@ Route::middleware('auth:sanctum')->group(function(){
 
 });
 
-
+//.........Attribuer un projet à un Freelance.............//
 Route::middleware('auth:sanctum')->group(function(){
-    Route::post('projet_user/{user_id}/{projet_id}',[PostulantProjetController::class,'projet_user']);
+    Route::post('postulant_projet',[PostulantProjetController::class,'postulant_projet']);
 });
 
 
-Route::get('listCategorie',[CategorieController::class,'listCategorie']);
+Route::get('listCategorie/',[CategorieController::class,'listCategorie']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('createCategorie',[CategorieController::class,'createCategorie']);
     Route::put('updateCategorie/{id}',[CategorieController::class,'updateCategorie']);
@@ -129,3 +131,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
 Route::get('listeFreelance',[FreelanceController::class,'listeFreelance']);
 
+
+//.................Postuler à un projet..............//
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('postuler',[PostulantController::class,'postuler']);
+    Route::post('updateInfo/{id}',[PostulantController::class,'updateInfo']);
+});

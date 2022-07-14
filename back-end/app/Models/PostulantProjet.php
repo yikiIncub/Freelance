@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ProstulantProjet extends Model
 {
     protected $fillable = [
+        'postulant_id', 
         'projet_id',
-        'user_id',  
+         
     ];
 }

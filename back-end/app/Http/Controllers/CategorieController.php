@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\facades\Validator;
-
+ 
 class CategorieController extends Controller
 {
     public function createCategorie(Request $request)

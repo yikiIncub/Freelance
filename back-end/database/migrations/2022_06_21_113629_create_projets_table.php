@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('description');
             $table->string('budget');
             $table->string('delai')->nullable();
+            $table->string('temps_realisation');
+            $table->string('disponibilite');
             $table->string('competence');
             $table->timestamps();
         });

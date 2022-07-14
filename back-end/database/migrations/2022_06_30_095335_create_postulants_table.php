@@ -19,6 +19,14 @@ return new class extends Migration
                   ->constrained()
                   ->onUpdate('cascade')
                   ->onDelete('cascade');
+            $table->foreignId('projet_id')
+                  ->constrained()
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+            $table->string('description');
+            $table->string('budget');
+            $table->string('delai')->nullable();
+            $table->string('temps_realisation');
             $table->timestamps();
 
         });

@@ -4,21 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Projet;
+use App\Models\Postulant;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class PostulantProjetController extends Controller
 {
-    public function projet_user(Request $request,$user_id,$projet_id)
+    public function postulant_projet(Request $request)
     {
-        $user = User::find($user_id);
 
-        $projet = Projet::find($projet_id);
+        $postulant=$request['postulant_id'];
+        $projet=$request['projet_id'];
 
-        if ($user && $projet) 
+        $postulant = Postulant::find($postulant);
+        $projet=Projet::find($projet);
+
+        if ($postulant && $projet) 
         {
-            $user->projet()->attach($projet);
+            $postulant->projet()->attach($projet);
             return response()->json([
-                'projets' => $user->projet,
+                'projets' => $postulant->projet,
                 'success' => 'Opération effectuée avec succès',
             ], 200);
         } else 
