@@ -80,4 +80,23 @@ class PostulantController extends Controller
                 ],200);
         }
     }
+    public function listePostulant(Request $request)
+    {
+        $proj=$request['projet_id'];
+        $projet=Projet::where('id',$proj)->first();
+        if($projet)
+        {
+            $postulant=Postulant::where('projet_id',$proj)->get();
+            return response()->json(
+            [
+                'message'=>'Les Postulants',
+                'data'=>$postulant
+            ],200);
+        }else
+         {
+            return response()->json([
+                'message'=>'Pas de postulant',
+             ],500);
+         }
+    }
 }

@@ -81,7 +81,7 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 //............Les Domaine..........//
-Route::get('listDomaine',[DomaineController::class,'listDomaine']);
+Route::get('listDom aine',[DomaineController::class,'listDomaine']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('createDomaine',[DomaineController::class,'createDomaine']);
     Route::delete('deleteDomaine',[DomaineController::class,'deleteDomaine']); 
@@ -114,12 +114,6 @@ Route::middleware('auth:sanctum')->group(function(){
 
 });
 
-//.........Attribuer un projet à un Freelance.............//
-Route::middleware('auth:sanctum')->group(function(){
-    Route::post('postulant_projet',[PostulantProjetController::class,'postulant_projet']);
-});
-
-
 Route::get('listCategorie/',[CategorieController::class,'listCategorie']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('createCategorie',[CategorieController::class,'createCategorie']);
@@ -136,4 +130,13 @@ Route::get('listeFreelance',[FreelanceController::class,'listeFreelance']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('postuler',[PostulantController::class,'postuler']);
     Route::post('updateInfo/{id}',[PostulantController::class,'updateInfo']);
+    Route::get('listePostulant',[PostulantController::class,'listePostulant']);
+});
+
+
+//.........Attribuer un projet à un Freelance.............//
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('postulant_projet',[PostulantProjetController::class,'postulant_projet']);
+    Route::post('dettachepostulant',[PostulantProjetController::class,'dettachepostulant']);
+    Route::get('postulant',[PostulantProjetController::class,'postulant']);
 });
