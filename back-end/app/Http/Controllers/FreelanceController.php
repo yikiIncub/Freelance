@@ -10,7 +10,7 @@ class FreelanceController extends Controller
 {
     public function listeFreelance(){
         $data = User::select("*")
-        ->where('type', '=', "freelance")
+        ->where('type', '=', "freelanceur")
         ->get();
         return response()->json([
             'message'=>'La liste des nos freelance',

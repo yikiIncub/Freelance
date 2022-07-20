@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('temps_realisation');
             $table->string('disponibilite');
             $table->string('competence');
+            $table->enum('etat', ['non_publié', 'publié','en_cours','terminé']);
             $table->timestamps();
         });
     }

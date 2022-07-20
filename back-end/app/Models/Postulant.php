@@ -14,12 +14,13 @@ class Postulant extends Model
         'description',
         'budget',
         'delai',
+        'disponibilite',
         'temps_realisation'
     ];
     public function user(){
         return $this->belongsToMany(User::class);
     }
-    public function projet(){
-        return $this->belongsToMany(Projet::class);
+    public function projets(){
+        return $this->belongsToMany(Projet::class,'postulant_projet');
     }
 }

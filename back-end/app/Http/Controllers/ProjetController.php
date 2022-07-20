@@ -27,6 +27,7 @@ class ProjetController extends Controller
             'disponibilite'=>'required|string|min:3',
             'competence'=>'required|string|min:3',
             'delai'=>'required',
+            'etat'=>'required'
        ]);
        if($validator->fails()){
         return response()->json([
@@ -42,6 +43,7 @@ class ProjetController extends Controller
              'disponibilite'=>$request->disponibilite,
              'temps_realisation'=>$request->temps_realisation,
              'delai'=>$request->delai,
+             'etat'=>$request->etat,
              'user_id'=>$request->user()->id,
              'categorie_id'=>$categorie->id
        ]);

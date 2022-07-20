@@ -23,6 +23,7 @@ class PostulantController extends Controller
                 'description'=>'required',
                 'budget'=>'required',
                 'delai'=>'required',
+                'disponibilite'=>'required',
                 'temps_realisation'=>'required',
            ]);
             if($validator->fails()){
@@ -37,6 +38,7 @@ class PostulantController extends Controller
                 'description'=>$request->description,
                 'budget'=>$request->budget,
                 'delai'=>$request->delai,
+                'disponibilite'=>$request->disponibilite,
                 'temps_realisation'=>$request->temps_realisation
 
             ]);
@@ -93,6 +95,7 @@ class PostulantController extends Controller
                 'data'=>$postulant
             ],200);
         }else
+        
          {
             return response()->json([
                 'message'=>'Pas de postulant',
