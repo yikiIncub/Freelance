@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthApi;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\DomaineController;
@@ -35,16 +36,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('updateprofile',[AuthApi::class,'updateprofile']);
    
 });
-//fin Authentification
-
-//..........Competences.........// 
-Route::middleware('auth:sanctum')->group(function(){
-    Route::post('createCompetence',[CompetenceController::class,'createCompetence']);
-    Route::get('competence',[CompetenceController::class,'competence']);
-    Route::put('updateCompetence/{id}',[CompetenceController::class,'updateCompetence']);
-    Route::delete('deleteCompetence/{id}',[CompetenceController::class,'deleteCompetence']);
-});
-
 
 
 //.........Projet..............//
@@ -74,28 +65,35 @@ Route::middleware('auth:sanctum')->group(function(){
 //............liste des commentaire d'un projet...........//
 Route::get('list/{projet_id}',[CommentaireController::class,'list']);
 Route::middleware('auth:sanctum')->group(function(){
-    //........Creer commentaire.............//
     Route::post('create/{projet_id}',[CommentaireController::class,'create']);
-    //............Suppression de commentaire............//
     Route::delete('deleteCommantaire/{projet_id}',[CommentaireController::class,'list']); 
 });
 
 //............Les Domaine..........//
-Route::get('listDom aine',[DomaineController::class,'listDomaine']);
+Route::get('listDomaine',[DomaineController::class,'listDomaine']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('createDomaine',[DomaineController::class,'createDomaine']);
-    Route::delete('deleteDomaine',[DomaineController::class,'deleteDomaine']); 
+    Route::post('updateDomaine/{id}',[DomaineController::class,'updateDomaine']);
+    Route::delete('deleteDomaine/{id}',[DomaineController::class,'deleteDomaine']); 
 
+});
+
+
+//..........Competences.........// 
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('createCompetence',[CompetenceController::class,'createCompetence']);
+    Route::get('competence',[CompetenceController::class,'competence']);
+    Route::put('updateCompetence/{id}',[CompetenceController::class,'updateCompetence']);
+    Route::delete('deleteCompetence/{id}',[CompetenceController::class,'deleteCompetence']);
 });
 
 //............Les Niveau..........//
     //............liste des Niveau...........//
 Route::get('listNiveau',[NiveauController::class,'listNiveau']);
 Route::middleware('auth:sanctum')->group(function(){
-    //........Creer Niveau.............//
     Route::post('createNiveau/{domaine_id}',[NiveauController::class,'createNiveau']);
-    //............Suppression de Niveau............//
-    Route::delete('deleteNiveau',[NiveauController::class,'deleteNiveau']); 
+    Route::delete('deleteNiveau/{id}',[NiveauController::class,'deleteNiveau']); 
+    Route::delete('updateNiveau/{id}',[NiveauController::class,'updateNiveau']);
 
 });
 
@@ -103,8 +101,8 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::get('listSpecialite',[SpecialiteController::class,'listSpecialite']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('createSpecialite',[SpecialiteController::class,'createSpecialite']);
-    Route::delete('deleteSpecialite',[SpecialiteController::class,'deleteSpecialite']); 
-    Route::delete('updateSpecialite/{id}',[SpecialiteController::class,'updateSpecialite']); 
+    Route::delete('deleteSpecialite/{id}',[SpecialiteController::class,'deleteSpecialite']); 
+    Route::put('updateSpecialite/{id}',[SpecialiteController::class,'updateSpecialite']); 
 
 });
 
@@ -139,4 +137,12 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('postulant_projet',[PostulantProjetController::class,'postulant_projet']);
     Route::post('dettachepostulant',[PostulantProjetController::class,'dettachepostulant']);
     Route::get('postulant',[PostulantProjetController::class,'postulant']);
+});
+
+
+
+//..............Administration.................///
+Route::post('createAdmin',[AdminController::class,'createAdmin']);
+Route::middleware('auth:sanctum')->group(function(){
+    //
 });

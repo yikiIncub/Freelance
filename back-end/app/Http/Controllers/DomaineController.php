@@ -11,11 +11,9 @@ class DomaineController extends Controller{
 
      // .........Creation de domaine........//
      public function createDomaine(Request $request) {
-        $comp=$request['competence_id'];
-        $competence=Competence::where('id',$comp)->first();
-        if($competence){
+       
             $validator=validator::make($request->all(),[
-                'libelle'=>'required',
+                'libelle'=>'required|unique:domaines',
            ]);
         if($validator->fails()){
          return response()->json([
@@ -25,15 +23,14 @@ class DomaineController extends Controller{
         }
         $domaine=Domaine::create([
               'libelle'=>$request->libelle,
-              'competence_id'=>$competence->id
         ]);
-        $competence->load('competence');
+        $domaine->save();
         return response()->json([
          'message'=>'Opération effectuée avec succés.',
          'data'=> $domaine
         ],200);
     }
-  }
+  
   public function updateDomaine(Request $request,$id){
     if($domanine=Domaine::where(['id'=>$id])->exists()){
         $validator=validator::make($request->all(),[
@@ -66,4 +63,17 @@ class DomaineController extends Controller{
         'data'=>$domaine
        ]);
     }
+    public function deleteDomaine($id){
+        if(Domaine::where(['id'=>$id])->exists()){
+            $domaine=Domaine::where(['id'=>$id])->first();
+            $domaine->delete();
+            return response()->json([
+              'message'=>'La Domaine a été supprimé avec succès.',
+            ],200);
+        }else{
+          return response()->json([
+            'message'=>'Desolé.',  
+          ],400);
+        }
+      }
 }

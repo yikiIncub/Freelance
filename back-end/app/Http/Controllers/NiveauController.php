@@ -67,4 +67,17 @@ public function listNiveau(){
         'data'=>$niveau 
     ]);
   }
+  public function deleteNiveau($id){
+    if(Niveau::where(['id'=>$id])->exists()){
+        $niveau=Niveau::where(['id'=>$id])->first();
+        $niveau->delete();
+        return response()->json([
+          'message'=>'La Niveau a été supprimé avec succès.',
+        ],200);
+    }else{
+      return response()->json([
+        'message'=>'Desolé.',  
+      ],400);
+    }
+  }
 }

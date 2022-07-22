@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
+use App\Models\Domaine;
 use App\Models\Competence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,9 +15,11 @@ class CompetenceController extends Controller
     //enregistrement des competences
   public function createCompetence(Request $request)
     {
-        
+      $comp=$request['domaine_id'];
+        $domaine=Domaine::where('id',$comp)->first();
+        if($domaine){
        $validator=validator::make($request->all(),[
-            'libelle'=>'required|string|min:3',
+            'libelle'=>'required|string|min:3|unique:competences',
        ]);
        if($validator->fails()){
         return response()->json([
@@ -26,20 +29,23 @@ class CompetenceController extends Controller
        }
        $compt=Competence::create([
              'libelle'=>$request->libelle,
+             'domaine_id'=>$domaine->id
        ]);
-       $compt->save();
+      $compt->save();
        return response()->json([
         'message'=>'Opération effectuée avec succés..',
         'data'=> $compt
       ],200);
     }
+  }
 
     //Mis à jour des competences
   public function updateCompetence(Request $request,$id){
-    
+  $comp=$request['domaine_id'];
+  $domaine=Domaine::where('id',$comp)->first();
   if($competence=Competence::where(['id'=>$id])->exists()){
     $validator=validator::make($request->all(),[
-      'libelle'=>'required|string|min:3',
+      'libelle'=>'required|string|min:3|unique:competences',
       
  ]);
    if($validator->fails()){
@@ -51,8 +57,8 @@ class CompetenceController extends Controller
     $competence=Competence::where([
       'id'=>$id])->first();
      $competence->update([
-          
         'libelle'=>$request->libelle,
+        'domaine_id'=>$domaine->id
      ]);
      return response()->json([
       'message'=>'Modification éffectué avec succés.',

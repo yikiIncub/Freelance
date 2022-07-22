@@ -17,7 +17,7 @@ class SpecialiteController extends Controller
        $domaine=Domaine::where('id',$spt)->first();
        if($domaine){
            $validator=validator::make($request->all(),[
-               'libelle'=>'required',
+               'libelle'=>'required|unique:specialites',
           ]);
        if($validator->fails()){
         return response()->json([
@@ -38,9 +38,11 @@ class SpecialiteController extends Controller
 
 }
 public function updateSpecialite(Request $request,$id){
+  $spt=$request['domaine_id'];
+  $domaine=Domaine::where('id',$spt)->first();
     if($specialite=Specialite::where(['id'=>$id])->exists()){
         $validator=validator::make($request->all(),[
-            'libelle'=>'required'
+            'libelle'=>'required|unique:specialites'
         ]);
         if($validator->fails()){
             return response()->json([
@@ -49,7 +51,8 @@ public function updateSpecialite(Request $request,$id){
             ],422);
         }$specialite=Specialite::where(['id'=>$id])->first();
         $specialite->update([
-             'libelle'=>$request->libelle
+             'libelle'=>$request->libelle,
+             'domaine_id'=>$domaine->id
         ]);
         return response()->json([
             'message'=>'Modification éffectué avec succés.',
@@ -69,4 +72,17 @@ public function listSpecialite(){
           'data'=>$specialite 
       ]);
     }
+    public function deleteSpecialite($id){
+        if(Specialite::where(['id'=>$id])->exists()){
+            $specialite=Specialite::where(['id'=>$id])->first();
+            $specialite->delete();
+            return response()->json([
+              'message'=>'La Specialite a été supprimé avec succès.',
+            ],200);
+        }else{
+          return response()->json([
+            'message'=>'Desolé.',  
+          ],400);
+        }
+      }
 }

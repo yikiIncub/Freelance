@@ -44,7 +44,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'freelances',
+            'provider' => 'administrateurs',
         ],
     ],
     /*
@@ -77,9 +77,9 @@ return [
         // ],
     ],
     'providers' => [
-        'freelances' => [
+        'administrateurs' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Freelance::class,
+            'model' => App\Models\Administrateur::class,
         ],
     ],
     /*
@@ -106,8 +106,8 @@ return [
         ],
     ],
     'passwords' => [
-        'freelances' => [
-            'provider' => 'freelances',
+        'administrateurs' => [
+            'provider' => 'administrateurs',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

@@ -15,10 +15,6 @@ return new class extends Migration
     {
         Schema::create('domaines', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('competence_id')
-                  ->constrained()
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
             $table->string('libelle');
             $table->timestamps();
         });

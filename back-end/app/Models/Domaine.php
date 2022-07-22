@@ -12,12 +12,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Domaine extends Model
 {
     protected $fillable = [
-        'libelle',
-        'competence_id'
+        'libelle'
     ];
     use HasFactory;
     public function competence(){
-        return $this->belongsTo(Competence::class,'competence');
+        return $this->belongsTo(Competence::class);
     }
     
     
