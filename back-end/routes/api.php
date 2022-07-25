@@ -14,6 +14,7 @@ use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\ProjetUserController;
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\DomaineUserController;
 use App\Http\Controllers\CompetenceUserController;
 use App\Http\Controllers\PostulantProjetController;
 
@@ -73,9 +74,13 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::get('listDomaine',[DomaineController::class,'listDomaine']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('createDomaine',[DomaineController::class,'createDomaine']);
-    Route::post('updateDomaine/{id}',[DomaineController::class,'updateDomaine']);
+    Route::put('updateDomaine/{id}',[DomaineController::class,'updateDomaine']);
     Route::delete('deleteDomaine/{id}',[DomaineController::class,'deleteDomaine']); 
 
+    //..........Domaine User.................//
+    Route::post('domaine_user',[DomaineUserController::class,'domaine_user']); 
+    Route::get('domaine',[DomaineUserController::class,'domaine']); 
+    Route::delete('dettacheDomaine/{id}',[DomaineUserController::class,'dettacheDomaine']); 
 });
 
 
@@ -85,16 +90,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('competence',[CompetenceController::class,'competence']);
     Route::put('updateCompetence/{id}',[CompetenceController::class,'updateCompetence']);
     Route::delete('deleteCompetence/{id}',[CompetenceController::class,'deleteCompetence']);
-});
-
-//............Les Niveau..........//
-    //............liste des Niveau...........//
-Route::get('listNiveau',[NiveauController::class,'listNiveau']);
-Route::middleware('auth:sanctum')->group(function(){
-    Route::post('createNiveau/{domaine_id}',[NiveauController::class,'createNiveau']);
-    Route::delete('deleteNiveau/{id}',[NiveauController::class,'deleteNiveau']); 
-    Route::delete('updateNiveau/{id}',[NiveauController::class,'updateNiveau']);
-
 });
 
 //............Les Specialite..........//

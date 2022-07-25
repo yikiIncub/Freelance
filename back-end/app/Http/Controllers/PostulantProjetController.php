@@ -15,17 +15,10 @@ class PostulantProjetController extends Controller
 {
     public function postulant_projet(Request $request)
     {
-        $postulant=$request['postulant_id'];
-        $projet=$request['projet_id'];
-
-        $postulant = Postulant::find($postulant);
-        $projet=Projet::find($projet);
-        if( $postulantProjet=PostulantProjet::where($postulant && $projet)->exists()) 
-        {
-            return response()->json([
-                'message' => 'Le lien existe ',
-            ], 200);
-        }
+        $post=$request['postulant_id'];
+        $proj=$request['projet_id'];
+        $postulant = Postulant::find($post);
+        $projet=Projet::find($proj);
         if ($postulant && $projet) 
         
         {
@@ -43,10 +36,10 @@ class PostulantProjetController extends Controller
     }
     public function postulant(Request $request){
         $proj=$request['projet_id'];
-        $projet = Projet::with('postulants')->find($proj);
+        $projet = Projet::with('postulant')->find($proj);
         if ($projet) {
             return response()->json([
-                'postulants' => $projet
+                'Les postulants du projet' => $projet
             ], 200);
         } else {
             return response()->json([
@@ -66,8 +59,8 @@ class PostulantProjetController extends Controller
         {
             $postulant->projet()->detach($projet);
             return response()->json([
-                'expert' => $postulant,
-                'mission' => $projet,
+                'postulant' => $postulant,
+                'projet' => $projet,
                 'success' => 'Suppression effectuée avec succès',
             ], 200);
         } else {

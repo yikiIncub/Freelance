@@ -24,7 +24,7 @@ class Projet extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    public function postulants(){
+    public function postulant(){
         return $this->belongsToMany(Postulant::class,'postulant_projet');
     }
 }

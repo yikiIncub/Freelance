@@ -15,9 +15,7 @@ class CompetenceController extends Controller
     //enregistrement des competences
   public function createCompetence(Request $request)
     {
-      $comp=$request['domaine_id'];
-        $domaine=Domaine::where('id',$comp)->first();
-        if($domaine){
+      
        $validator=validator::make($request->all(),[
             'libelle'=>'required|string|min:3|unique:competences',
        ]);
@@ -29,20 +27,18 @@ class CompetenceController extends Controller
        }
        $compt=Competence::create([
              'libelle'=>$request->libelle,
-             'domaine_id'=>$domaine->id
        ]);
       $compt->save();
        return response()->json([
-        'message'=>'Opération effectuée avec succés..',
+        'message'=>'Opération effectuée avec succés..', 
         'data'=> $compt
       ],200);
-    }
+    
   }
 
     //Mis à jour des competences
   public function updateCompetence(Request $request,$id){
-  $comp=$request['domaine_id'];
-  $domaine=Domaine::where('id',$comp)->first();
+ 
   if($competence=Competence::where(['id'=>$id])->exists()){
     $validator=validator::make($request->all(),[
       'libelle'=>'required|string|min:3|unique:competences',
@@ -58,7 +54,6 @@ class CompetenceController extends Controller
       'id'=>$id])->first();
      $competence->update([
         'libelle'=>$request->libelle,
-        'domaine_id'=>$domaine->id
      ]);
      return response()->json([
       'message'=>'Modification éffectué avec succés.',
@@ -75,8 +70,7 @@ class CompetenceController extends Controller
   }
 }
 public function competence(){
- $user_id = Auth::user()->id;
-  $competence=Competence::where('id',$user_id)->get();
+ $competence=Competence::all();
   return response()->json([
       'status'=>1,
       'message'=>'Les competences',

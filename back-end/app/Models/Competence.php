@@ -15,11 +15,7 @@ class Competence extends Model
     use HasFactory;
     protected $fillable = [
         'libelle',
-        'domaine_id'
     ];
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
     public function domaine(){
         return $this->belongsToMany(Domaine::class);
     }

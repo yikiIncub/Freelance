@@ -13,10 +13,8 @@ class SpecialiteController extends Controller
     // .........Creation de Niveau........//
     public function createSpecialite(Request $request)
     {
-       $spt=$request['domaine_id'];
-       $domaine=Domaine::where('id',$spt)->first();
-       if($domaine){
-           $validator=validator::make($request->all(),[
+    
+      $validator=validator::make($request->all(),[
                'libelle'=>'required|unique:specialites',
           ]);
        if($validator->fails()){
@@ -25,21 +23,17 @@ class SpecialiteController extends Controller
             'errors'=>$validator->errors()
         ],422);
        }
-       $specilite=Specialite::create([
+       $specialite=Specialite::create([
              'libelle'=>$request->libelle,
-             'domaine_id'=>$domaine->id
        ]);
-       $domaine->load('competence');
+       $specialite->save();
        return response()->json([
         'message'=>'Opération effectuée avec succés.',
-        'data'=> $specilite
+        'data'=> $specialite
       ],200);
-    }
 
 }
 public function updateSpecialite(Request $request,$id){
-  $spt=$request['domaine_id'];
-  $domaine=Domaine::where('id',$spt)->first();
     if($specialite=Specialite::where(['id'=>$id])->exists()){
         $validator=validator::make($request->all(),[
             'libelle'=>'required|unique:specialites'
@@ -52,7 +46,6 @@ public function updateSpecialite(Request $request,$id){
         }$specialite=Specialite::where(['id'=>$id])->first();
         $specialite->update([
              'libelle'=>$request->libelle,
-             'domaine_id'=>$domaine->id
         ]);
         return response()->json([
             'message'=>'Modification éffectué avec succés.',

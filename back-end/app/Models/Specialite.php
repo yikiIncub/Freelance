@@ -10,6 +10,8 @@ class Specialite extends Model
     use HasFactory;
     protected $fillable = [
         'libelle',
-        'domaine_id'
     ];
+    public function domaine(){
+        return $this->belongsTo(Domaine::class);
+    }
 }

@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('domaines', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
+            $table->foreignId('competence_id')->constrained()->onUpdate('cascade') ->onDelete('cascade');
+            $table->foreignId('specialite_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
