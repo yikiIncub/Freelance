@@ -85,7 +85,12 @@ class AdminController extends Controller
     
     public function profilAdmin(Request $request)
     {
-        //
+            return response()->json([
+                'status'=>1,
+                'message'=>'information du profil',
+                'data'=>Auth::user()       
+            ]);
+    
     }
     public function updateAdmin(Request $request)
     {

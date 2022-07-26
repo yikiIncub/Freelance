@@ -2,28 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Domaine;
-use App\Models\DomaineUser;
+use App\Models\Specialite;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class DomaineUserController extends Controller
+class DomaineSpecialiteController extends Controller
 {
-    public function domaine_user(Request $request)
+    public function domaine_specialite(Request $request)
     {
         $domaine=$request['domaine_id'];
-        $user=$request['user_id'];
+        $specialite=$request['specialite_id'];
 
         $domaine= Domaine::find($domaine);
-        $user=User::find($user);
-        if ($domaine && $user) 
+        $specialite=Specialite::find($specialite);
+        if ($domaine && $specialite)
         
         {
-            $domaine->user()->attach($user);
+            $domaine->specialite()->attach($specialite);
             return response()->json([
                 'success' => 'Opération effectuée avec succès',
-                'Domaine' => $domaine->user,
+                'Domaine' => $domaine->specialite,
             ], 200);
         } else 
         {
@@ -33,31 +31,29 @@ class DomaineUserController extends Controller
         }
     }
     public function domaine(Request $request){
-        $users=$request['user_id'];
-        $user = User::with('domaine')->find($users);
-        if ($user) {
+        $specialite=$request['specialite_id'];
+        $specialite= Specialite::with('domaine')->find($specialite);
+        if ($specialite) {
             return response()->json([
-                'Les domaine de ' => $user
+                'Les domaine' => $specialite
             ], 200);
         } else {
             return response()->json([
-                'echec' => 'Pas de domaine',
+                'echec' => 'Pas de specialite',
             ], 404);
         }
     }
     public function dettacheDomaine(Request $request,$id)
     {
         $domaines=$request['domaine_id'];
-        $users=$request['user_id'];
+        $specialite=$request['specialite_id'];
         $domaine = Domaine::find($domaines);
-        $user=User::find($users);
-        if ($domaine && $user) 
+        $specialite=Specialite::find($specialite);
+        if ($domaine && $specialite) 
         {
-            $domaine->user()->detach($user);
+            $domaine->specialite()->detach($specialite);
             return response()->json([
                 'success' => 'Suppression effectuée avec succès',
-                'domaine' => $domaine,
-                'user' => $user,
             ], 200);
         } else {
             return response()->json([
@@ -65,5 +61,4 @@ class DomaineUserController extends Controller
             ], 500);
         }
     }
-
 }

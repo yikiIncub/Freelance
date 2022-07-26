@@ -69,4 +69,5 @@ class PostulantProjetController extends Controller
             ], 500);
         }
     }
+    
 }

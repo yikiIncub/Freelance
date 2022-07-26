@@ -17,6 +17,8 @@ use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\DomaineUserController;
 use App\Http\Controllers\CompetenceUserController;
 use App\Http\Controllers\PostulantProjetController;
+use App\Http\Controllers\CompetenceDomaineController;
+use App\Http\Controllers\DomaineSpecialiteController;
 
 
 
@@ -85,11 +87,16 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
 //..........Competences.........// 
+Route::post('createCompetence',[CompetenceController::class,'createCompetence']);
 Route::middleware('auth:sanctum')->group(function(){
-    Route::post('createCompetence',[CompetenceController::class,'createCompetence']);
     Route::get('competence',[CompetenceController::class,'competence']);
     Route::put('updateCompetence/{id}',[CompetenceController::class,'updateCompetence']);
     Route::delete('deleteCompetence/{id}',[CompetenceController::class,'deleteCompetence']);
+
+    //..........Domaine Competence.................//
+    Route::post('domaine_competence',[CompetenceDomaineController::class,'domaine_competence']); 
+    Route::get('competenceDomaine',[CompetenceDomaineController::class,'competenceDomaine']); 
+    Route::delete('dettacheDomaine/{id}',[CompetenceDomaineController::class,'dettacheDomaine']); 
 });
 
 //............Les Specialite..........//
@@ -98,6 +105,11 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('createSpecialite',[SpecialiteController::class,'createSpecialite']);
     Route::delete('deleteSpecialite/{id}',[SpecialiteController::class,'deleteSpecialite']); 
     Route::put('updateSpecialite/{id}',[SpecialiteController::class,'updateSpecialite']); 
+
+    //..........Domaine Specialite.................//
+    Route::post('domaine_specialite',[DomaineSpecialiteController::class,'domaine_specialite']); 
+    Route::get('domaine',[DomaineSpecialiteController::class,'domaine']); 
+    Route::delete('dettacheDomaine/{id}',[DomaineSpecialiteController::class,'dettacheDomaine']); 
 
 });
 
@@ -138,6 +150,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
 //..............Administration.................///
 Route::post('createAdmin',[AdminController::class,'createAdmin']);
+Route::post('loginAdmin',[AdminController::class,'loginAdmin']);
 Route::middleware('auth:sanctum')->group(function(){
-    //
+    Route::post('profilAdmin',[AdminController::class,'profilAdmin']);
 });

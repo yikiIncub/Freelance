@@ -13,15 +13,13 @@ class Domaine extends Model
 {
     protected $fillable = [
         'libelle',
-        'competence_id',
-        'specialite_id'
     ];
     use HasFactory;
     public function competence(){
         return $this->belongsToMany(Competence::class);
     }
-    public function domaine(){
-        return $this->belongsToMany(Competence::class);
+    public function specialite(){
+        return $this->belongsToMany(Specialite::class);
     }
     public function user(){
         return $this->belongsToMany(User::class);

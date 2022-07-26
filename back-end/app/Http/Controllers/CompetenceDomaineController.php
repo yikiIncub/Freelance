@@ -2,28 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Domaine;
-use App\Models\DomaineUser;
+use App\Models\Competence;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class DomaineUserController extends Controller
+class CompetenceDomaineController extends Controller
 {
-    public function domaine_user(Request $request)
+    public function domaine_competence(Request $request)
     {
         $domaine=$request['domaine_id'];
-        $user=$request['user_id'];
+        $competence=$request['competence_id'];
 
         $domaine= Domaine::find($domaine);
-        $user=User::find($user);
-        if ($domaine && $user) 
+        $competence=Competence::find($competence);
+        if ($domaine && $competence) 
         
         {
-            $domaine->user()->attach($user);
+            $domaine->competence()->attach($competence);
             return response()->json([
                 'success' => 'Opération effectuée avec succès',
-                'Domaine' => $domaine->user,
+                'Domaine' => $domaine->competence,
             ], 200);
         } else 
         {
@@ -32,32 +30,32 @@ class DomaineUserController extends Controller
             ], 500);
         }
     }
-    public function domaine(Request $request){
-        $users=$request['user_id'];
-        $user = User::with('domaine')->find($users);
-        if ($user) {
+    public function competenceDomaine(Request $request){
+        $competence=$request['competence_id'];
+        $competence= Competence::with('domaine')->find($competence);
+        if ($competence) {
             return response()->json([
-                'Les domaine de ' => $user
+                'Les domaine' => $competence
             ], 200);
         } else {
             return response()->json([
-                'echec' => 'Pas de domaine',
+                'echec' => 'Pas de competence',
             ], 404);
         }
     }
     public function dettacheDomaine(Request $request,$id)
     {
         $domaines=$request['domaine_id'];
-        $users=$request['user_id'];
+        $competence=$request['competence_id'];
         $domaine = Domaine::find($domaines);
-        $user=User::find($users);
-        if ($domaine && $user) 
+        $competence=Competence::find($competence);
+        if ($domaine && $competence) 
         {
-            $domaine->user()->detach($user);
+            $domaine->competence()->detach($competence);
             return response()->json([
                 'success' => 'Suppression effectuée avec succès',
                 'domaine' => $domaine,
-                'user' => $user,
+                'competence' => $competence,
             ], 200);
         } else {
             return response()->json([
@@ -65,5 +63,4 @@ class DomaineUserController extends Controller
             ], 500);
         }
     }
-
 }

@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Specialite extends Model
+class DomaineSpecialite extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'libelle',
+        'domaine_id',
+        'specialite_id'
     ];
-    public function domaine(){
-        return $this->belongsToMany(Domaine::class);
-    }
 }
