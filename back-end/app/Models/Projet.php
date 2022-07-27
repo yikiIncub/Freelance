@@ -18,7 +18,6 @@ class Projet extends Model
         'delai',
         'competence',
         'temps_realisation',
-        'disponibilite',
         'etat'
     ];
     public function user(){

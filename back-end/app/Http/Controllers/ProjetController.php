@@ -24,7 +24,6 @@ class ProjetController extends Controller
             'budget'=>'required|string|min:5',
             'competence'=>'required|string|min:3',
             'temps_realisation'=>'required',
-            'disponibilite'=>'required|string|min:3',
             'competence'=>'required|string|min:3',
             'delai'=>'required',
             'etat'=>'required'
@@ -40,7 +39,6 @@ class ProjetController extends Controller
              'description'=>$request->description,
              'budget'=>$request->budget,
              'competence'=>$request->competence,
-             'disponibilite'=>$request->disponibilite,
              'temps_realisation'=>$request->temps_realisation,
              'delai'=>$request->delai,
              'etat'=>$request->etat,
@@ -70,7 +68,6 @@ class ProjetController extends Controller
                 'budget'=>'required|string|min:5',
                 'competence'=>'required|string|min:3',
                 'temps_realisation'=>'required',
-                'disponibilite'=>'required',
                 'delai'=>'required',
             ]);
               if($validator->fails()){
@@ -87,7 +84,6 @@ class ProjetController extends Controller
                   'competence'=>$request->competence,
                   'delai'=>$request->delai,
                   'temps_realisation'=>$request->temps_realisation,
-                  'disponibilite'=>$request->disponibilite,
                   'user_id'=>$request->user()->id,
                   'categorie_id'=>$categorie->id
               ]);
