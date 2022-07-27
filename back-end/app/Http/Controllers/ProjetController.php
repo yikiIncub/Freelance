@@ -24,7 +24,6 @@ class ProjetController extends Controller
             'budget'=>'required|string|min:5',
             'competence'=>'required|string|min:3',
             'temps_realisation'=>'required',
-            'competence'=>'required|string|min:3',
             'delai'=>'required',
             'etat'=>'required'
        ]);
