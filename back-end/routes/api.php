@@ -37,7 +37,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('profil' ,[AuthApi::class,'profil']);
     Route::post('logout',[AuthApi::class,'logout']);
     Route::post('updateprofile',[AuthApi::class,'updateprofile']);
-   
 });
 
 
@@ -135,7 +134,7 @@ Route::get('listeFreelance',[FreelanceController::class,'listeFreelance']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('postuler',[PostulantController::class,'postuler']);
     Route::post('updateInfo/{id}',[PostulantController::class,'updateInfo']);
-    Route::get('listePostulant',[PostulantController::class,'listePostulant']);
+    Route::post('listePostulant',[PostulantController::class,'listePostulant']);
 });
 
 
@@ -153,4 +152,10 @@ Route::post('createAdmin',[AdminController::class,'createAdmin']);
 Route::post('loginAdmin',[AdminController::class,'loginAdmin']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('profilAdmin',[AdminController::class,'profilAdmin']);
+});
+
+Route::middleware('auth:sanctum')->group(function(){
+    //............Details du postulant..........//
+    Route::get('detailPostulant/{id}',[PostulantController::class,'detailPostulant']);
+    Route::get('profilPostulant/{id}',[PostulantController::class,'profilPostulant']);
 });

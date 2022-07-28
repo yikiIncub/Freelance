@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Projet;
 use App\Models\Postulant;
 use Illuminate\Http\Request;
@@ -102,4 +103,24 @@ class PostulantController extends Controller
              ],500);
          }
     }
+    public function detailPostulant($id){
+        $postulant=Postulant::where('id',$id)->get();
+        return response()->json([
+            'status'=>1,
+            'message'=>'information du profil',
+            'data'=>$postulant       
+        ]);
+    }
+    public function profilPostulant(Request $request,$id){
+        $user=$request['user_id'];
+        $postulant=Postulant::where('id',$id)->first();
+        if($postulant){
+        $users=User::where('id',$user)->get();
+        return response()->json([
+            'status'=>1,
+            'message'=>'information du profil',
+            'data'=>$users      
+        ]);
+    }
+}
 }
