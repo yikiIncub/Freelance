@@ -16,14 +16,19 @@ class PostulantController extends Controller
     {
        
         $proj=$request['projet_id'];
-
+        $user=$request['user_id'];
         $projet=Projet::where('id',$proj)->first();
-        if($projet)
+        $users=User::where('id',$user)->first();
+        if($postulant=Postulant::where('user_id',$user)->exists()){
+            return response()->json([
+                'message'=>'Vous avez déja postuler à ce projet',
+                ],200);
+        }
+        if($projet && $users)
         {
             $validator=validator::make($request->all(),[
                 'description'=>'required',
                 'budget'=>'required',
-                'delai'=>'required',
                 'disponibilite'=>'required',
                 'temps_realisation'=>'required',
            ]);
@@ -38,7 +43,6 @@ class PostulantController extends Controller
                 'projet_id'=>$projet->id, 
                 'description'=>$request->description,
                 'budget'=>$request->budget,
-                'delai'=>$request->delai,
                 'disponibilite'=>$request->disponibilite,
                 'temps_realisation'=>$request->temps_realisation
 
@@ -47,6 +51,10 @@ class PostulantController extends Controller
                     'message'=>'Requête effectuée avec succés',
                     'data'=>$postulant
                 ],200); 
+        }else{
+            return response()->json([
+                'message'=>'Vous n êtes pas autorisé à poustuler à ce projet',
+            ],200);
         }
     }
     public function updateInfo(Request $request,$id)
@@ -58,7 +66,6 @@ class PostulantController extends Controller
             $validator=validator::make($request->all(),[
                 'description'=>'required',
                 'budget'=>'required',
-                'delai'=>'required',
                 'temps_realisation'=>'required',
            ]);
             if($validator->fails()){
@@ -73,7 +80,6 @@ class PostulantController extends Controller
                 'projet_id'=>$projet->id, 
                 'description'=>$request->description,
                 'budget'=>$request->budget,
-                'delai'=>$request->delai,
                 'temps_realisation'=>$request->temps_realisation
 
             ]);
