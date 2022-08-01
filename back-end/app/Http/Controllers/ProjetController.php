@@ -31,7 +31,7 @@ class ProjetController extends Controller
         return response()->json([
             'message'=>'invalide',
             'errors'=>$validator->errors()
-        ],422);
+        ],200);
        }
        $projet=Projet::create([
              'titre'=>$request->titre,
@@ -52,7 +52,7 @@ class ProjetController extends Controller
     }else{
       return response()->json([
         'message'=>'veillez selectionne la categorie exacte.',
-      ],201);
+      ],200);
     }
     }
 
@@ -73,7 +73,7 @@ class ProjetController extends Controller
                     return response()->json([
                       'message'=>'invalide',
                       'errors'=>$validator->errors()
-                ],422);
+                ],200);
               }
               $projet=Projet::where(['id'=>$id])->first();
                 $projet->update([
@@ -93,7 +93,7 @@ class ProjetController extends Controller
         }else{
             return response()->json([
              'message'=>'Desolé.',
-              ],400);
+              ],200);
     
       }
   }
@@ -109,7 +109,7 @@ class ProjetController extends Controller
       }else{
         return response()->json([
           'message'=>'Desolé.',
-        ],400);
+        ],200);
       }
   }
  //.......Detaille de Projet Quelconque............//
@@ -123,7 +123,7 @@ class ProjetController extends Controller
     }else{
       return response()->json([
         'message'=>'Desolé.',
-      ],400);
+      ],200);
     }
 }
   //......Liste des projet d'un utilisateur........//
@@ -150,7 +150,7 @@ class ProjetController extends Controller
      }else{
         return response()->json([
             'message'=>'Pas de projet',
-         ],422);
+         ],200);
      }
 }
    //......la liste de tout les projet.......//
@@ -175,7 +175,7 @@ class ProjetController extends Controller
     }else{
       return response()->json([
         'message'=>'Desolé.',
-      ],400);
+      ],200);
     }
 }
 }

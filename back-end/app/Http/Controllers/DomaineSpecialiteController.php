@@ -27,7 +27,7 @@ class DomaineSpecialiteController extends Controller
         {
             return response()->json([
                 'echec' => 'Echec',
-            ], 500);
+            ], 200);
         }
     }
     public function domaine(Request $request){
@@ -40,7 +40,7 @@ class DomaineSpecialiteController extends Controller
         } else {
             return response()->json([
                 'echec' => 'Pas de specialite',
-            ], 404);
+            ], 200);
         }
     }
     public function dettacheDomaine(Request $request,$id)
@@ -58,7 +58,7 @@ class DomaineSpecialiteController extends Controller
         } else {
             return response()->json([
                 'echec' => 'Echec ',
-            ], 500);
+            ], 200);
         }
     }
 }

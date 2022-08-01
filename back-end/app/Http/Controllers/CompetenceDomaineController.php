@@ -27,7 +27,7 @@ class CompetenceDomaineController extends Controller
         {
             return response()->json([
                 'echec' => 'Echec',
-            ], 500);
+            ], 200);
         }
     }
     public function competenceDomaine(Request $request){
@@ -40,7 +40,7 @@ class CompetenceDomaineController extends Controller
         } else {
             return response()->json([
                 'echec' => 'Pas de competence',
-            ], 404);
+            ], 200);
         }
     }
     public function dettacheDomaine(Request $request,$id)
@@ -60,7 +60,7 @@ class CompetenceDomaineController extends Controller
         } else {
             return response()->json([
                 'echec' => 'Echec ',
-            ], 500);
+            ], 200);
         }
     }
 }

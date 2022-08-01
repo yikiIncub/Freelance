@@ -31,7 +31,7 @@ class PostulantProjetController extends Controller
         {
             return response()->json([
                 'echec' => 'Echec',
-            ], 500);
+            ], 200);
         }
     }
     public function postulant(Request $request){
@@ -44,7 +44,7 @@ class PostulantProjetController extends Controller
         } else {
             return response()->json([
                 'echec' => 'Pas de postulant',
-            ], 404);
+            ], 200);
         }
     }
     public function dettachepostulant(Request $request)
@@ -66,7 +66,7 @@ class PostulantProjetController extends Controller
         } else {
             return response()->json([
                 'echec' => 'Echec ',
-            ], 500);
+            ], 200);
         }
     }
     

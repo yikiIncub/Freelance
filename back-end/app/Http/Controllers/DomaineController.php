@@ -21,7 +21,7 @@ class DomaineController extends Controller{
          return response()->json([
              'message'=>'invalide',
              'errors'=>$validator->errors()
-         ],422);
+         ],200);
         }
         $domaine=Domaine::create([
               'libelle'=>$request->libelle,
@@ -43,7 +43,7 @@ class DomaineController extends Controller{
             return response()->json([
                 'message'=>'invalide',
                 'errors'=>$validator->errors()
-            ],422);
+            ],200);
         }$domanine=Domaine::where(['id'=>$id])->first();
         $domanine->update([
              'libelle'=>$request->libelle,
@@ -56,7 +56,7 @@ class DomaineController extends Controller{
     }else{
         return response()->json([
          'message'=>'Desolé.',
-          ],400);
+          ],200);
         }
 }
     public function listDomaine(){
@@ -77,7 +77,7 @@ class DomaineController extends Controller{
         }else{
           return response()->json([
             'message'=>'Desolé.',  
-          ],400);
+          ],200);
         }
       }
 }

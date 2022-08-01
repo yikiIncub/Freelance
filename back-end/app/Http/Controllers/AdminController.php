@@ -24,7 +24,7 @@ class AdminController extends Controller
         return response()->json([
             'message'=>'invalide',
             'errors'=>$validator->errors()
-        ],422);
+        ],200);
        }
        $admin=new Administrateur();
        $admin->nom=ucwords($request->nom);
@@ -50,7 +50,7 @@ class AdminController extends Controller
         return response()->json([
             'message'=>'invalide',
             'errors'=>$validator->errors()
-        ],422);
+        ],200);
        }
         //verification des informations
 
@@ -76,7 +76,7 @@ class AdminController extends Controller
             return response()->json([
                 'status'=>0,
                 'message'=>'Vérifiez votre email'
-            ], 404);
+            ], 200);
 
         }
        

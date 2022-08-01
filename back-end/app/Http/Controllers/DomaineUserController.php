@@ -29,7 +29,7 @@ class DomaineUserController extends Controller
         {
             return response()->json([
                 'echec' => 'Echec',
-            ], 500);
+            ], 200);
         }
     }
     public function domaine(Request $request){
@@ -42,7 +42,7 @@ class DomaineUserController extends Controller
         } else {
             return response()->json([
                 'echec' => 'Pas de domaine',
-            ], 404);
+            ], 200);
         }
     }
     public function dettacheDomaine(Request $request,$id)
@@ -62,7 +62,7 @@ class DomaineUserController extends Controller
         } else {
             return response()->json([
                 'echec' => 'Echec ',
-            ], 500);
+            ], 200);
         }
     }
 

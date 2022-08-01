@@ -23,7 +23,7 @@ class CompetenceController extends Controller
         return response()->json([
             'message'=>'invalide',
             'errors'=>$validator->errors()
-        ],422);
+        ],400);
        }
        $compt=Competence::create([
              'libelle'=>$request->libelle,
@@ -48,7 +48,7 @@ class CompetenceController extends Controller
         return response()->json([
            'message'=>'invalide',
            'errors'=>$validator->errors()
-  ],422);
+  ],200);
 }
     $competence=Competence::where([
       'id'=>$id])->first();
@@ -65,7 +65,7 @@ class CompetenceController extends Controller
       'message'=>'Desolé.',
       
       
-    ],400);
+    ],200);
 
   }
 }
@@ -87,7 +87,7 @@ public function deleteCompetence($id){
   }else{
     return response()->json([
       'message'=>'Desolé.',  
-    ],400);
+    ],200);
   }
 }
 }

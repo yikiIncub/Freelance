@@ -31,7 +31,7 @@ class PostulantController extends Controller
                 return response()->json([
                 'message'=>'invalide',
                 'errors'=>$validator->errors()
-                ],422);
+                ],200);
             }
             $postulant=Postulant::create ([
                 'user_id'=>$request->user()->id,
@@ -65,7 +65,7 @@ class PostulantController extends Controller
                 return response()->json([
                 'message'=>'invalide',
                 'errors'=>$validator->errors()
-                ],422);
+                ],200);
             }
             $postulant=Postulant::where(['id'=>$id])->first();
             $postulant->update([
@@ -100,7 +100,7 @@ class PostulantController extends Controller
          {
             return response()->json([
                 'message'=>'Pas de postulant',
-             ],500);
+             ],200);
          }
     }
     public function detailPostulant($id){

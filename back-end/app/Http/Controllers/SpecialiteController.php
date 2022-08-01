@@ -21,7 +21,7 @@ class SpecialiteController extends Controller
         return response()->json([
             'message'=>'invalide',
             'errors'=>$validator->errors()
-        ],422);
+        ],200);
        }
        $specialite=Specialite::create([
              'libelle'=>$request->libelle,
@@ -42,7 +42,7 @@ public function updateSpecialite(Request $request,$id){
             return response()->json([
                 'message'=>'invalide',
                 'errors'=>$validator->errors()
-            ],422);
+            ],200);
         }$specialite=Specialite::where(['id'=>$id])->first();
         $specialite->update([
              'libelle'=>$request->libelle,
@@ -54,7 +54,7 @@ public function updateSpecialite(Request $request,$id){
     }else{
         return response()->json([
          'message'=>'Desolé.',
-          ],400);
+          ],200);
         }
 }
 public function listSpecialite(){
@@ -75,7 +75,7 @@ public function listSpecialite(){
         }else{
           return response()->json([
             'message'=>'Desolé.',  
-          ],400);
+          ],200);
         }
       }
 }

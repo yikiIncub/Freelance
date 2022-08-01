@@ -20,7 +20,7 @@ class CommentaireController extends Controller
                 return response()->json([
                 'message'=>'invalide',
                 'errors'=>$validator->errors()
-                ],422);
+                ],200);
             }
             $commentaire=Commentaire::create([
              'message'=>$request->message,
@@ -36,7 +36,7 @@ class CommentaireController extends Controller
         }else{
              return response()->json([
                 'message'=>'Pas de projet',
-                ],422);
+                ],200);
         }
 
         
@@ -53,7 +53,7 @@ class CommentaireController extends Controller
          }else{
             return response()->json([
                 'message'=>'Pas de projet',
-             ],422);
+             ],200);
          }
     }
 }

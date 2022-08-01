@@ -20,7 +20,7 @@ class CategorieController extends Controller
         return response()->json([
             'message'=>'invalide',
             'errors'=>$validator->errors()
-        ],422);
+        ],200);
        }
        $categorie=Categorie::create([
              'libelle'=>$request->libelle,
@@ -44,7 +44,7 @@ class CategorieController extends Controller
         return response()->json([
            'message'=>'invalide',
            'errors'=>$validator->errors()
-  ],422);
+  ],200);
 }
     $categorie=Categorie::where([
       'id'=>$id])->first();
@@ -87,7 +87,7 @@ public function deleteCategorie($id){
   }else{
     return response()->json([
       'message'=>'Desolé.',  
-    ],400);
+    ],200);
   }
 }
 

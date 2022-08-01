@@ -13,7 +13,7 @@ class FreelanceController extends Controller
         ->where('type', '=', "freelanceur")
         ->get();
         return response()->json([
-            'message'=>'La liste des nos freelance',
+            'message'=>'La liste des nos freelancers',
             'data'=>$data
         ],200);
     }

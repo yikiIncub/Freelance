@@ -35,7 +35,7 @@ class AuthApi extends Controller
         return response()->json([
             'message'=>'invalide',
             'errors'=>$validator->errors()
-        ],422);
+        ],200);
        }
        $user=new User();
        $user->name=ucwords($request->name);
@@ -47,7 +47,8 @@ class AuthApi extends Controller
        $token=$user->createToken('auth_token')->plainTextToken;
        return response()->json([
            'status'=>1,
-           'message'=>'Utilisateur créé avec succès'
+           'message'=>'Utilisateur créé avec succès',
+           'access_token'=>$token
        ]);
     // Fin Création de compte client
         
@@ -66,7 +67,7 @@ class AuthApi extends Controller
         return response()->json([
             'message'=>'invalide',
             'errors'=>$validator->errors()
-        ],422);
+        ],200);
        }
         //verification des informations
         $user= User::where('email','=', $request->email)->first();
@@ -91,7 +92,7 @@ class AuthApi extends Controller
             return response()->json([
                 'status'=>0,
                 'message'=>'Vous n êtes pas inscrit'
-            ], 404);
+            ], 200);
 
         }
         //Fin connexion
@@ -183,7 +184,7 @@ public function updateprofile(Request $request){
     return response()->json([
         'message'=>'invalide',
         'errors'=>$validator->errors()
-    ],422);
+    ],200);
     }
     $user=$request->user();
     if($request->hasFile('photo')){
