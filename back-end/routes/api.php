@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthApi;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NiveauController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\CategorieController;
@@ -158,4 +159,11 @@ Route::middleware('auth:sanctum')->group(function(){
     //............Details du postulant..........//
     Route::get('detailPostulant/{id}',[PostulantController::class,'detailPostulant']);
     Route::get('profilPostulant/{id}',[PostulantController::class,'profilPostulant']);
+});
+
+
+Route::middleware('auth:sanctum')->group(function(){
+    //............Details du postulant..........//
+    Route::post('userCompetence',[ProfilController::class,'userCompetence']);
+    Route::get('listCompetence/{user_id}',[ProfilController::class,'listCompetence']);
 });

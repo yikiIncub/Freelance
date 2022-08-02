@@ -15,7 +15,7 @@ class ProjetController extends Controller
     
     {
       $categori=$request['categorie_id'];
-
+       
       $categorie=Categorie::where('id',$categori)->first();
      if($categorie) {
        $validator=validator::make($request->all(),[
@@ -44,7 +44,7 @@ class ProjetController extends Controller
              'user_id'=>$request->user()->id,
              'categorie_id'=>$categorie->id
        ]);
-       $projet->load('user');
+       $projet->save();
        return response()->json([
         'message'=>'Opération effectuée avec succés.',
         'data'=> $projet

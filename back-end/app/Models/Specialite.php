@@ -14,4 +14,5 @@ class Specialite extends Model
     public function domaine(){
         return $this->belongsToMany(Domaine::class);
     }
+    
 }
