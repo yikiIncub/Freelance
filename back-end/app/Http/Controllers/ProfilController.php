@@ -21,7 +21,7 @@ class ProfilController extends Controller
         $competences=Competence::where('id',$competence)->first();
         $specialites=Specialite::where('id',$specialite)->first();
         $domaines=Domaine::where('id',$domaine)->first();
-        if($users && $competences && $specialites && $domaines)
+        if($users && $competences && $specialites && $domaines) 
         {
             $profil=Profil::create([
                 'user_id'=>$request->user()->id,

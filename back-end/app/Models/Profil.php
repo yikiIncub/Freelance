@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Profil extends Model
 {
     use HasFactory;
-    protected $fillable = [
+    protected $fillable =
+    [
         'user_id',
         'competence_id',
         'domaine_id',

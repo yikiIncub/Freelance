@@ -117,16 +117,13 @@ class PostulantController extends Controller
             'data'=>$postulant       
         ]);
     }
-    public function profilPostulant(Request $request,$id){
-        $user=$request['user_id'];
-        $postulant=Postulant::where('id',$id)->first();
-        if($postulant){
-        $users=User::where('id',$user)->get();
+    public function profilPostulant($id){
+        $user=User::where('id',$id)->get();
         return response()->json([
             'status'=>1,
             'message'=>'information du profil',
-            'data'=>$users      
+            'data'=>$user     
         ]);
-    }
+   
 }
 }
