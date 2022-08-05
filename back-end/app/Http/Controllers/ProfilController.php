@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class ProfilController extends Controller
 {
-    public function userCompetence(Request $request)
+    public function createAllCompetence(Request $request)
     {
         $user=$request['user_id'];
         $competence=$request['competence_id'];

@@ -164,6 +164,6 @@ Route::middleware('auth:sanctum')->group(function(){
 
 Route::middleware('auth:sanctum')->group(function(){
     //............Details du postulant..........//
-    Route::post('userCompetence',[ProfilController::class,'userCompetence']);
+    Route::post('createAllCompetence',[ProfilController::class,'createAllCompetence']);
     Route::get('listCompetence/{user_id}',[ProfilController::class,'listCompetence']);
 });
