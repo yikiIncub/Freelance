@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\user;
+
+use App\Models\User;
+use App\Models\Profil;
 use App\Models\Projet;
 use App\Models\Postulant;
 use Illuminate\Http\Request;
@@ -17,21 +19,18 @@ class FreelanceController extends Controller
         return response()->json([
             'message'=>'La liste des nos freelancers',
             'data'=>$data
+
         ],200);
     }
-     public function projetDuFreelance($user_id)
+     public function Freelance()
      {
-       $postulant=Postulant::where('user_id',$user_id)->first();
-       if($postulant)
-       {
-        $projets = Projet::join('users', 'users.projet_id', '=', 'projets.id')
-        ->join('postulants', 'postulans.user_id', '=', 'postulants.id')
-        ->get(['projets.*', 'users.name']);
-       }
-       return response()->json([
-        'message'=>'La liste des projets',
-        'data'=>$projets 
-    ],200);
+        $users = DB::table('users')
+        ->rightJoin('profils', 'users.id', '=', 'profils.user_id')
+        ->get();
+        return response()->json([
+            'message'=>'La liste des nos freelancers',
+            'data'=>$users
+        ],200);
      }
 }
 

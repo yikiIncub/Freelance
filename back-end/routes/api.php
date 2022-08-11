@@ -171,7 +171,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
 
-Route::get('projetDuFreelance/{user_id}',[FreelanceController::class,'projetDuFreelance']);
+Route::get('Freelance',[FreelanceController::class,'Freelance']);
 
 
 

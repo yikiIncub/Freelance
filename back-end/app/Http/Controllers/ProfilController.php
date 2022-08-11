@@ -13,15 +13,13 @@ class ProfilController extends Controller
 {
     public function createAllCompetence(Request $request)
     {
-        $user=$request['user_id'];
         $competence=$request['competence_id'];
         $specialite=$request['specialite_id'];
         $domaine=$request['domaine_id'];
-        $users=User::where('id',$user)->first();
         $competences=Competence::where('id',$competence)->first();
         $specialites=Specialite::where('id',$specialite)->first();
         $domaines=Domaine::where('id',$domaine)->first();
-        if($users && $competences && $specialites && $domaines) 
+        if($competences && $specialites && $domaines) 
         {
             $profil=Profil::create([
                 'user_id'=>$request->user()->id,
@@ -45,7 +43,7 @@ class ProfilController extends Controller
             $competence=Profil::where('user_id',$user_id)->get();
             return response()->json([
                 'Freelanceur'=>$user,
-                'Competence'=>$competence,
+                'Competence'=>$profil,
             ],200);
          }else{
             return response()->json([
