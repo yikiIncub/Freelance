@@ -124,6 +124,6 @@ class PostulantController extends Controller
             'message'=>'information du profil',
             'data'=>$user     
         ]);
-   
+    
 }
 }

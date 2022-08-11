@@ -42,15 +42,16 @@ class ProfilController extends Controller
         
         if($user){
            
-            $profil=Profil::where('user_id',$user_id)->get();
+            $competence=Profil::where('user_id',$user_id)->get();
             return response()->json([
-                'message'=>'Les competence',
-                'data'=>$profil,
+                'Freelanceur'=>$user,
+                'Competence'=>$competence,
             ],200);
          }else{
             return response()->json([
                 'message'=>'Pas de projet',
              ],200);
          }
+         
     }
 }

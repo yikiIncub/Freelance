@@ -34,9 +34,9 @@ class PostulantProjetController extends Controller
             ], 200);
         }
     }
-    public function postulant(Request $request){
-        $proj=$request['projet_id'];
-        $projet = Projet::with('postulant')->find($proj);
+    public function postulant(Request $request,$projet_id){
+        
+        $projet = Projet::with('postulant')->find($projet_id);
         if ($projet) {
             return response()->json([
                 'Les postulants du projet' => $projet

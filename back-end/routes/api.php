@@ -163,7 +163,15 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
 Route::middleware('auth:sanctum')->group(function(){
-    //............Details du postulant..........//
     Route::post('createAllCompetence',[ProfilController::class,'createAllCompetence']);
     Route::get('listCompetence/{user_id}',[ProfilController::class,'listCompetence']);
 });
+
+
+
+
+
+Route::get('projetDuFreelance/{user_id}',[FreelanceController::class,'projetDuFreelance']);
+
+
+
