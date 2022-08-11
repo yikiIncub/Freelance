@@ -78,4 +78,12 @@ public function listSpecialite(){
           ],200);
         }
       }
+      public function Specialite($id){
+        $specialite=Specialite::where('id',$id)->get();
+        return response()->json([
+            'status'=>1,
+            'message'=>'Specialite',
+            'data'=>$specialite     
+        ]);
+      }
 }

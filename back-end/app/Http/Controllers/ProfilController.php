@@ -20,7 +20,7 @@ class ProfilController extends Controller
         $specialites=Specialite::where('id',$specialite)->first();
         $domaines=Domaine::where('id',$domaine)->first();
         if($competences && $specialites && $domaines) 
-        {
+        { 
             $profil=Profil::create([
                 'user_id'=>$request->user()->id,
                 'competence_id'=>$competences->id,
@@ -43,7 +43,7 @@ class ProfilController extends Controller
             $competence=Profil::where('user_id',$user_id)->get();
             return response()->json([
                 'Freelanceur'=>$user,
-                'Competence'=>$profil,
+                'Competence'=>$competence,
             ],200);
          }else{
             return response()->json([

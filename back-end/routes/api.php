@@ -173,5 +173,8 @@ Route::middleware('auth:sanctum')->group(function(){
 
 Route::get('Freelance',[FreelanceController::class,'Freelance']);
 
-
-
+Route::middleware('auth:sanctum')->group(function(){
+       Route::get('Domaine/{id}',[DomaineController::class,'Domaine']);
+       Route::get('SelectCompetence/{id}',[CompetenceController::class,'SelectCompetence']);
+       Route::get('Specialite/{id}',[SpecialiteController::class,'Specialite']); 
+    });

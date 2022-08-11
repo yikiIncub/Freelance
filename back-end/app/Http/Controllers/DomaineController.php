@@ -80,4 +80,13 @@ class DomaineController extends Controller{
           ],200);
         }
       }
+      public function Domaine($id){
+        $domaine=Domaine::where('id',$id)->get();
+        return response()->json([
+            'status'=>1,
+            'message'=>'damaine',
+            'data'=>$domaine     
+        ]);
+    
+}
 }

@@ -90,4 +90,13 @@ public function deleteCompetence($id){
     ],200);
   }
 }
+public function SelectCompetence($id){
+  $competence=Competence::where('id',$id)->get();
+  return response()->json([
+      'status'=>1,
+      'message'=>'competence',
+      'data'=>$competence     
+  ]);
+
+}
 }
