@@ -192,3 +192,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
 Route::get('user-competences-domaines',[VcompetenceControler::class,'getVcompetence']);
+
+
+
+
+
+Route::get('usermail/{user_id}',[PostulantController::class,'usermail']);

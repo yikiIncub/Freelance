@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Projet;
-use App\Models\Postulant;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\facades\Validator;
+use \App\Models\User;
+use \App\Models\Projet;
+use \App\Models\Postulant;
+use \Illuminate\Http\Request;
+use \Illuminate\Routing\Controller;
+use \Illuminate\Support\facades\Validator;
 
 class PostulantController extends Controller
 {
@@ -126,4 +126,15 @@ class PostulantController extends Controller
         ]);
     
 }
+    public function usermail(Request $request ,$user_id)
+    {
+        $postulant=Postulant::where('id',$user_id)->first();
+        if($postulant){
+            $user=$request->user()->email;
+        return response()->json([
+            'status'=>1,
+            'data'=>$user     
+        ]);   
+        }
+    }
 }

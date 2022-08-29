@@ -32,7 +32,9 @@ class CreateVcompetencesTable extends Migration
         return <<<SQL
     CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vcompetence`  AS  
     (select distinct `c`.`libelle` AS `competences`,`d`.`libelle` AS `domaines`,`p`.`user_id` AS `user` 
-    from `bdfreelance`.`profils` `p` join `bdfreelance`.`competences` `c` join `bdfreelance`.`domaines` `d` join `bdfreelance`.`users` `u` where `p`.`user_id` = `u`.`id` and `p`.`competence_id` = `c`.`id` and `p`.`domaine_id` = `d`.`id`);
+    from `bdfreelance`.`profils` `p` join `bdfreelance`.`competences` `c` 
+    join `bdfreelance`.`domaines` `d` join `bdfreelance`.`users` `u` 
+    where `p`.`user_id` = `u`.`id` and `p`.`competence_id` = `c`.`id` and `p`.`domaine_id` = `d`.`id`);
 SQL;
     }
 

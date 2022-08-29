@@ -3,13 +3,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Projet;
-use App\Models\Postulant;
-use Illuminate\Http\Request;
-use App\Models\PostulantProjet;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\facades\Validator;
+use \App\Models\User;
+use \App\Models\Projet;
+use \App\Models\Postulant;
+use \Illuminate\Http\Request;
+use \App\Models\PostulantProjet;
+use \Illuminate\Routing\Controller;
+use \Illuminate\Support\facades\Validator;
 
 class PostulantProjetController extends Controller
 {
