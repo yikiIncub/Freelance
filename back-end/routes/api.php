@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NiveauController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProjetController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\FreelanceController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\PostulantController;
 use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\ProjetUserController;
 use App\Http\Controllers\SpecialiteController;
+use App\Http\Controllers\VcompetenceControler;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\DomaineUserController;
 use App\Http\Controllers\CompetenceUserController;
@@ -178,3 +180,15 @@ Route::middleware('auth:sanctum')->group(function(){
        Route::get('SelectCompetence/{id}',[CompetenceController::class,'SelectCompetence']);
        Route::get('Specialite/{id}',[SpecialiteController::class,'Specialite']); 
     });
+
+
+
+
+//............Contact.............//
+Route::post('createContact',[ContactController::class,'createContact']);
+Route::middleware('auth:sanctum')->group(function(){
+      Route::get('contactList',[ContactController::class,'contact']);
+});
+
+
+Route::get('user-competences-domaines',[VcompetenceControler::class,'getVcompetence']);
