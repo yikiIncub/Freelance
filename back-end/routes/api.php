@@ -191,7 +191,7 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 
-Route::get('user-competences-domaines',[VcompetenceControler::class,'getVcompetence']);
+Route::get('user-competences-domaines/{user_id}',[VcompetenceControler::class,'getVcompetence']);
 
 
 

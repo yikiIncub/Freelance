@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class VcompetenceControler extends Controller
 {
-     public function getVcompetence(Request $request)
+     public function getVcompetence($user_id)
     {
-        $Vr=$request['user_id'];
-        $comp=Vcompetence::where('user',$Vr)->get();
+    
+        $comp=Vcompetence::where('user',$user_id)->get();
         return response()->json([
             'message'=>'La liste des competences',
             'data'=>$comp
