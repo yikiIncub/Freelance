@@ -12,14 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class FreelanceController extends Controller
 {
-    public function listeFreelance(){
+    public function listeFreelance($nb){
         $data = User::select("*")
         ->where('type', '=', "freelanceur")
-        ->get();
+        ->paginate($nb);
         return response()->json([
-            'message'=>'La liste des nos freelancers',
+            'message'=>'La liste des nos freelances',
             'data'=>$data
-
         ],200);
     }
      public function Freelance()

@@ -154,8 +154,8 @@ class ProjetController extends Controller
      }
 }
    //......la liste de tout les projet.......//
-   public function listProjet(){
-    $projet=Projet::all();
+   public function listProjet($nb){
+    $projet=Projet::paginate($nb);
         return response()->json([
           'status'=>1,
           'message'=>'Les projet',
