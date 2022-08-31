@@ -47,7 +47,8 @@ Route::middleware('auth:sanctum')->group(function(){
     //...........Detaille sur un projet quelconque.........// 
 Route::get('detProjet/{id}',[ProjetController::class,'detProjet']);
     //.........la liste de tout les projet
-Route::get('listProjet/{nb}',[ProjetController::class,'listProjet']);
+Route::get('listProjet',[ProjetController::class,'listProjet']);
+Route::get('paginateProjet/{nb}',[ProjetController::class,'paginateProjet']);
 Route::middleware('auth:sanctum')->group(function(){
     //.....creation de projet...........//
     Route::post('createProjet',[ProjetController::class,'createProjet']);
@@ -130,7 +131,8 @@ Route::middleware('auth:sanctum')->group(function(){
 }); 
 
 
-Route::get('listeFreelance/{nb}',[FreelanceController::class,'listeFreelance']);
+Route::get('listeFreelance',[FreelanceController::class,'listeFreelance']);
+Route::get('paginateFreelance/{nb}',[FreelanceController::class,'listeFreelance']);
 
 
 //.................Postuler à un projet..............//
@@ -183,7 +185,6 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
 
-
 //............Contact.............//
 Route::post('createContact',[ContactController::class,'createContact']);
 Route::middleware('auth:sanctum')->group(function(){
@@ -193,4 +194,5 @@ Route::middleware('auth:sanctum')->group(function(){
 
 Route::get('user-competences-domaines/{user_id}',[VcompetenceControler::class,'getVcompetence']);
 
-Route::get('usermail/{user_id}',[PostulantController::class,'usermail']);
+Route::post('usermail',[PostulantController::class,'usermail']);
+

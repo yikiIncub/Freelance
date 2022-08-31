@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\User;
-use App\Models\Profil;
-use App\Models\Projet;
-use App\Models\Postulant;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use \App\Models\User;
+use \App\Models\Profil;
+use \App\Models\Projet;
+use \App\Models\Postulant;
+use \Illuminate\Http\Request;
+use \Illuminate\Support\Facades\DB;
 
 class FreelanceController extends Controller
 {
-    public function listeFreelance($nb){
+    public function listeFreelance(){
+        $data = User::select("*")
+        ->where('type', '=', "freelanceur")
+        ->get();
+        return response()->json([
+            'message'=>'La liste des nos freelances',
+            'data'=>$data
+        ],200);
+    }
+
+    public function paginateFreelance($nb){
         $data = User::select("*")
         ->where('type', '=', "freelanceur")
         ->paginate($nb);

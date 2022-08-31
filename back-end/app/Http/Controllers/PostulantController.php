@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use \App\Models\User;
 use \App\Models\Projet;
 use \App\Models\Postulant;
+use App\Mail\PostulantMail;
 use \Illuminate\Http\Request;
 use \Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Mail;
 use \Illuminate\Support\facades\Validator;
 
 class PostulantController extends Controller
@@ -126,15 +128,14 @@ class PostulantController extends Controller
         ]);
     
 }
-    public function usermail(Request $request ,$user_id)
+    public function usermail(Request $request)
     {
-        $postulant=Postulant::where('id',$user_id)->first();
-        if($postulant){
-            $user=$request->user()->email;
-        return response()->json([
+      $email=$request['user_email'];
+      $user=['email'=>$email];
+      Mail::to($user['email'])->send(new PostulantMail($user));
+      return response()->json([
             'status'=>1,
-            'data'=>$user     
-        ]);   
-        }
+            'message'=>'Email envoyé avec succès',    
+        ]);
     }
 }

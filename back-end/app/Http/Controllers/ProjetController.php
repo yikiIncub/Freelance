@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Projet;
-use App\Models\Categorie;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\facades\Validator;
+use \App\Models\Projet;
+use \App\Models\Categorie;
+use \Illuminate\Http\Request;
+use \Illuminate\Support\Facades\Auth;
+use \Illuminate\Support\facades\Validator;
 
 class ProjetController extends Controller
 {
@@ -154,7 +154,16 @@ class ProjetController extends Controller
      }
 }
    //......la liste de tout les projet.......//
-   public function listProjet($nb){
+   public function listProjet(){
+    $projet=Projet::get();
+        return response()->json([
+          'status'=>1,
+          'message'=>'Les projet',
+          'data'=>$projet 
+      ]);
+
+   }
+   public function paginateProjet($nb){
     $projet=Projet::paginate($nb);
         return response()->json([
           'status'=>1,
