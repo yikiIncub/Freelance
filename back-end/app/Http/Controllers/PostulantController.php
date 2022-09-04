@@ -130,12 +130,11 @@ class PostulantController extends Controller
 }
     public function usermail(Request $request)
     {
-      $email=$request['user_email'];
-      $user=['email'=>$email];
-      Mail::to($user['email'])->send(new PostulantMail($user));
-      return response()->json([
+        $email=$request->email;
+        Mail::to($email)->send(new PostulantMail());
+         return response()->json([
             'status'=>1,
-            'message'=>'Email envoyé avec succès',    
+            'message'=>'Email envoyé avec succès',
         ]);
     }
 }

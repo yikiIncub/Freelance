@@ -16,6 +16,7 @@ use App\Http\Controllers\CompetenceController;
 use App\Http\Controllers\ProjetUserController;
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\VcompetenceControler;
+use App\Http\Controllers\VpostulantController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\DomaineUserController;
 use App\Http\Controllers\CompetenceUserController;
@@ -195,4 +196,7 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::get('user-competences-domaines/{user_id}',[VcompetenceControler::class,'getVcompetence']);
 
 Route::post('usermail',[PostulantController::class,'usermail']);
+
+
+Route::post('vpostulant',[VpostulantController::class,'vpostulant']);
 
