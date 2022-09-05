@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Domaine;
-use App\Models\Competence;
-use Illuminate\Http\Request;
+use \App\Models\Domaine;
+use \App\Models\Competence;
+use \Illuminate\Http\Request;
 
 class CompetenceDomaineController extends Controller
 {
