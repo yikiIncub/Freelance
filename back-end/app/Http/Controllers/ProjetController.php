@@ -51,8 +51,6 @@ class ProjetController extends Controller
 
     //.........Modification de projet............//
     public function updateProjet(Request $request,$id){
-      $categori=$request['categorie_id'];
-      $categorie=Categorie::where('id',$categori)->first();
       if($projet=Projet::where(['id'=>$id])->exists()){
             $validator=validator::make($request->all(),[
                 'titre'=>'required|string|min:5',
