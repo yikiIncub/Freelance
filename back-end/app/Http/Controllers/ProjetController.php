@@ -14,12 +14,9 @@ class ProjetController extends Controller
     public function createProjet(Request $request)
     
     {
-      $categori=$request['categorie_id'];
-       
-      $categorie=Categorie::where('id',$categori)->first();
-     if($categorie) {
        $validator=validator::make($request->all(),[
             'titre'=>'required|string|min:5',
+            'categorie'=>'required|string|min:3',
             'description'=>'required|string|min:10',
             'budget'=>'required|string|min:5',
             'competence'=>'required|string|min:3',
@@ -35,6 +32,7 @@ class ProjetController extends Controller
        }
        $projet=Projet::create([
              'titre'=>$request->titre,
+             'categorie'=>$request->categorie,
              'description'=>$request->description,
              'budget'=>$request->budget,
              'competence'=>$request->competence,
@@ -42,18 +40,13 @@ class ProjetController extends Controller
              'delai'=>$request->delai,
              'etat'=>$request->etat,
              'user_id'=>$request->user()->id,
-             'categorie_id'=>$categorie->id
+             
        ]);
-       $projet->save();
        return response()->json([
         'message'=>'Opération effectuée avec succés.',
         'data'=> $projet
       ],200);
-    }else{
-      return response()->json([
-        'message'=>'veillez selectionne la categorie exacte.',
-      ],200);
-    }
+    
     }
 
     //.........Modification de projet............//
@@ -63,6 +56,7 @@ class ProjetController extends Controller
       if($projet=Projet::where(['id'=>$id])->exists()){
             $validator=validator::make($request->all(),[
                 'titre'=>'required|string|min:5',
+                'categorie'=>'required|string|min:3',
                 'description'=>'required|string|min:10',
                 'budget'=>'required|string|min:5',
                 'competence'=>'required|string|min:3',
@@ -78,13 +72,13 @@ class ProjetController extends Controller
               $projet=Projet::where(['id'=>$id])->first();
                 $projet->update([
                   'titre'=>$request->titre,
+                  'categorie'=>$request->categorie,
                   'description'=>$request->description,
                   'budget'=>$request->budget,
                   'competence'=>$request->competence,
                   'delai'=>$request->delai,
                   'temps_realisation'=>$request->temps_realisation,
                   'user_id'=>$request->user()->id,
-                  'categorie_id'=>$categorie->id
               ]);
               return response()->json([
                 'message'=>'Modification éffectué avec succés.',
