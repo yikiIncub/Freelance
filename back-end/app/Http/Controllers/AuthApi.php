@@ -25,7 +25,6 @@ class AuthApi extends Controller
         //Validation
        $validator=validator::make($request->all(),[
             'name'=>'required|string|min:3',
-            'prenom'=>'required|string|min:3',
             'email'=>'required|email|unique:users',
             'type'=>'required|string|min:3',
             'password'=>'required|min:8|confirmed',
@@ -170,7 +169,7 @@ public function updateprofile(Request $request){
     
     $validator=validator::make($request->all(),[
         'name'=>'required|string|min:3',
-        'prenom'=>'required|string|min:3',
+        'prenom'=>'nullable|string|min:3',
         'telephone'=>'nullable|min:8',
         'nationalite'=>'nullable|max:50',
         'residence'=>'nullable|max:50',
