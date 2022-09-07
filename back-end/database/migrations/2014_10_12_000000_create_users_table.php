@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('prenom')->nullable();
             $table->string('type');
+            $table->string('type_client')->nullable();
             $table->string('email')->unique();
             $table->string('telephone')->nullable();
             $table->string('nationalite')->nullable();

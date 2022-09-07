@@ -38,6 +38,7 @@ class AuthApi extends Controller
        }
        $user=new User();
        $user->name=ucwords($request->name);
+       $user->type_client=($request->type_client);
        $user->prenom=($request->prenom);
        $user->email=$request->email;
        $user->type=($request->type);
@@ -176,7 +177,8 @@ public function updateprofile(Request $request){
         'Sexe'=>'nullable', 
         'photo'=>'nullable|image|mimes:jpeg,jpg,png',
         'email'=>'required|email',
-        'type'=>'required|string|min:3'
+        'type'=>'required|string|min:3',
+        'type_client'=>'nullable'
        
    ]);
    if($validator->fails()){
@@ -202,6 +204,7 @@ public function updateprofile(Request $request){
      $user->update([
         'name'=>$request->name,
         'prenom'=>$request->prenom,
+        'type_client'=>$request->type_client,
         'email'=>$request->email,
         'type'=>$request->type,
         'telephone'=>$request->telephone,
