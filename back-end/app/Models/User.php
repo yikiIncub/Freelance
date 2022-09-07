@@ -23,6 +23,7 @@ class User extends Authenticatable
         'prenom',
         'email',
         'type',
+        'type_client',
         'telephone',
         'nationalite',
         'photo',
