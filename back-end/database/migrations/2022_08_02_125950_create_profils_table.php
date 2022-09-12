@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('profils', function (Blueprint $table) {
             $table->id();
+            $table->string('biographie');
+            $table->string('competence_verifie');
             $table->foreignId('user_id')->constrained()->onUpdate('cascade') ->onDelete('cascade');
             $table->foreignId('domaine_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('competence_id')->constrained()->onUpdate('cascade') ->onDelete('cascade');

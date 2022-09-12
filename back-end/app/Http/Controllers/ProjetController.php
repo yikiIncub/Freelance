@@ -186,6 +186,6 @@ class ProjetController extends Controller
 
 public function etaatprojet()
 {
-  $projet=Projet:: 
+  
 }
 }

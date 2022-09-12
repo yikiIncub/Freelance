@@ -12,6 +12,7 @@ class V_postulant extends Model
         'postulant_email',
         'titre_projet',
         'email_client',
+        'postulant_nom'
     ];
 
 }

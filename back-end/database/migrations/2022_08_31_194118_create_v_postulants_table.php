@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('v_postulants', function (Blueprint $table) {
             $table->id();
+            $table->string('postulant_nom');
             $table->string('postulant_email');
             $table->string('titre_projet');
             $table->string('email_client');
