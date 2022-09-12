@@ -17,8 +17,8 @@ class VpostulantController extends Controller
     {
         if($request->isMethod('POST')){
             $Datapostulant=$request->input();
-             foreach($Datapostulant['v_postulants'] as $key => $value){
-              $V_postulant= new V_postulant;
+             foreach($Datapostulant as $key => $value){
+              $V_postulant= new V_postulant();
               $V_postulant->postulant_email=$value['postulant_email'];
               $V_postulant->email_client=$value['email_client'];
               $V_postulant->titre_projet=$value['titre_projet'];

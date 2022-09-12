@@ -59,6 +59,7 @@ class ProjetController extends Controller
                 'budget'=>'required|string|min:5',
                 'competence'=>'required|string|min:3',
                 'temps_realisation'=>'required',
+                'etat'=>'etat',
                 'delai'=>'required',
             ]);
               if($validator->fails()){
@@ -76,6 +77,7 @@ class ProjetController extends Controller
                   'competence'=>$request->competence,
                   'delai'=>$request->delai,
                   'temps_realisation'=>$request->temps_realisation,
+                  'etat'=>$request->etat,
                   'user_id'=>$request->user()->id,
               ]);
               return response()->json([
@@ -178,5 +180,12 @@ class ProjetController extends Controller
         'message'=>'Desolé.',
       ],200);
     }
+}
+
+
+
+public function etaatprojet()
+{
+  $projet=Projet:: 
 }
 }
