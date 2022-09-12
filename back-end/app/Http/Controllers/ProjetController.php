@@ -184,8 +184,34 @@ class ProjetController extends Controller
 
 
 
-public function etaatprojet()
+public function projet_etat($etat)
 {
-  
+  $data = Projet::select("*")
+        ->where('etat', '=', $etat)
+        ->get();
+        return response()->json([
+            'message'=>'La liste des projets en cours de réalisation',
+            'data'=>$data
+        ],200);
+}
+public function projetrealiser()
+{
+  $data = Projet::select("*")
+        ->where('etat', '=', "termine")
+        ->get();
+        return response()->json([
+            'message'=>'La liste des projets réalisés',
+            'data'=>$data
+        ],200);
+}
+public function projetpublie()
+{
+  $data = Projet::select("*")
+        ->where('etat', '=', "publie")
+        ->get();
+        return response()->json([
+            'message'=>'La liste des projets publié',
+            'data'=>$data
+        ],200);
 }
 }

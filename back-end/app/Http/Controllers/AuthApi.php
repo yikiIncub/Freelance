@@ -42,6 +42,7 @@ class AuthApi extends Controller
        $user->prenom=($request->prenom);
        $user->email=$request->email;
        $user->type=($request->type);
+       $user->biographie=($request->biographie);
        $user-> password=Hash::make($request->password);
        $user->save();
        $token=$user->createToken('auth_token')->plainTextToken;
@@ -209,6 +210,7 @@ public function updateprofile(Request $request){
         'type'=>$request->type,
         'telephone'=>$request->telephone,
         'nationalite'=>$request->nationalite,
+        'biographie'=>$request->biographie,
         'photo'=>$request->photo,
         'residence'=>$request->residence,
         'sexe'=>$request->sexe,

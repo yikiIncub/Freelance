@@ -26,6 +26,7 @@ class User extends Authenticatable
         'type_client',
         'telephone',
         'nationalite',
+        'biographie',
         'photo',
         'residence',
         'sexe',

@@ -200,3 +200,4 @@ Route::post('usermail',[PostulantController::class,'usermail']);
 
 Route::post('vpostulant',[VpostulantController::class,'vpostulant']);
 
+Route::get('projet_etat/{etat}',[ProjetController::class,'projet_etat']);
