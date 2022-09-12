@@ -29,6 +29,7 @@ class User extends Authenticatable
         'biographie',
         'photo',
         'residence',
+        'statut_competence',
         'sexe',
         'password',
 
