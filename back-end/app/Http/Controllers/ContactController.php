@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Mail\ContactMail;
 use \Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use \Illuminate\Support\Facades\Mail;
 use \Illuminate\Support\Facades\Validator;
 
 
