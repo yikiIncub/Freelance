@@ -12,6 +12,5 @@ class Vcompetence extends Model
     public $competences;
     public $domaines;
     public $user;
-    public $
 
 }

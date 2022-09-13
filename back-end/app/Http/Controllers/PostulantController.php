@@ -8,7 +8,7 @@ use \App\Models\Postulant;
 use App\Mail\PostulantMail;
 use \Illuminate\Http\Request;
 use \Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Mail;
+use \Illuminate\Support\Facades\Mail;
 use \Illuminate\Support\facades\Validator;
 
 class PostulantController extends Controller

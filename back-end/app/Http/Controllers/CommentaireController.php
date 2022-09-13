@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Projet;
-use App\Models\Commentaire;
-use Illuminate\Http\Request;
-use Illuminate\Support\facades\Validator;
+use \App\Models\Projet;
+use \App\Models\Commentaire;
+use \Illuminate\Http\Request;
+use \Illuminate\Support\facades\Validator;
 
 class CommentaireController extends Controller
 {

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Administrateur;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\facades\Validator;
-use Illuminate\Support\Facades\Auth;
+use \Illuminate\Http\Request;
+use \App\Models\Administrateur;
+use \Illuminate\Support\Facades\Hash;
+use \Illuminate\Support\facades\Validator;
+use \Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {

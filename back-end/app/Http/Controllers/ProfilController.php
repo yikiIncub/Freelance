@@ -7,7 +7,7 @@ use App\Models\Profil;
 use App\Models\Domaine;
 use App\Models\Competence;
 use App\Models\Specialite;
-use Illuminate\Http\Request;
+use \Illuminate\Http\Request;
 
 class ProfilController extends Controller
 {

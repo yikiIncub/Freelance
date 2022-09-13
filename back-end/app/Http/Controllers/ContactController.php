@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Mail\ContactMail;
 use \Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use \Illuminate\Support\Facades\Validator;
 
 
@@ -29,6 +31,8 @@ class ContactController extends Controller
                 'numero'=>$request->numero,
                 'message'=>$request->message
             ]);
+            $mailable=new ContactMail($request->nom,$request->prenom,$request->email,$request->numero ,$request->message);
+            Mail::to('contact@yikifree.com')->send($mailable);
             return response()->json([
                 'message'=>'message envoyé avec succès.',
                 'data'=>$contact

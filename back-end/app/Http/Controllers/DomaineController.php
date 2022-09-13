@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Domaine;
 use App\Models\Competence;
 use App\Models\Specialite;
-use Illuminate\Http\Request;
+use \Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\facades\Validator;
+use \Illuminate\Support\facades\Validator;
 
 class DomaineController extends Controller{
 

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categorie;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\facades\Validator;
+use \App\Models\Categorie;
+use \Illuminate\Http\Request;
+use \Illuminate\Routing\Controller;
+use \Illuminate\Support\Facades\Auth;
+use \Illuminate\Support\facades\Validator;
  
 class CategorieController extends Controller
 {

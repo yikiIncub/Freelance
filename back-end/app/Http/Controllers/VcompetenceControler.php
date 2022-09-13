@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vcompetence;
-use Illuminate\Http\Request;
+use \Illuminate\Http\Request;
 
 class VcompetenceControler extends Controller
 {

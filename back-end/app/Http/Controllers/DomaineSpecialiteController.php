@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Domaine;
 use App\Models\Specialite;
-use Illuminate\Http\Request;
+use \Illuminate\Http\Request;
 
 class DomaineSpecialiteController extends Controller
 {
