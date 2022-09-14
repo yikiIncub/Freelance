@@ -6,7 +6,7 @@ use App\Models\Domaine;
 use App\Models\Specialite;
 use \Illuminate\Http\Request;
 use \Illuminate\Routing\Controller;
-use \Illuminate\Support\facades\Validator;
+use \Illuminate\Support\Facades\Validator;
 
 class SpecialiteController extends Controller
 {

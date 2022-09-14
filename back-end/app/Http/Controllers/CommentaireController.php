@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use \App\Models\Projet;
 use \App\Models\Commentaire;
 use \Illuminate\Http\Request;
-use \Illuminate\Support\facades\Validator;
+use \Illuminate\Support\Facades\Validator;
 
 class CommentaireController extends Controller
 {

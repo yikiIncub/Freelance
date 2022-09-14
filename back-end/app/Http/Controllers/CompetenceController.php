@@ -8,7 +8,7 @@ use App\Models\Domaine;
 use App\Models\Competence;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\facades\Validator;
+use Illuminate\Support\Facades\Validator;
 
 class CompetenceController extends Controller
 {

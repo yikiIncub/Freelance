@@ -8,7 +8,7 @@ use \App\Models\V_postulant;
 use \App\Mail\EmailPostulant;
 use \Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Mail;
-use \Illuminate\Support\facades\Validator;
+use \Illuminate\Support\Facades\Validator;
 
 
 class VpostulantController extends Controller
