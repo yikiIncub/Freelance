@@ -201,3 +201,5 @@ Route::post('usermail',[PostulantController::class,'usermail']);
 Route::post('vpostulant',[VpostulantController::class,'vpostulant']);
 
 Route::get('projet_etat/{etat}',[ProjetController::class,'projet_etat']); 
+
+Route::post('countpostulant/{projet_id}',[PostulantController::class,'countpostulant']); 

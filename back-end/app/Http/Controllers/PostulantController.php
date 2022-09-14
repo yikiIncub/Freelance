@@ -137,4 +137,13 @@ class PostulantController extends Controller
             'message'=>'Email envoyé avec succès',
         ]);
     }
+    public function countpostulant($projet_id){
+        $postulant=Postulant::where('projet_id',$projet_id)->count();
+         return response()->json([
+            'message'=>'nombre de postulants',
+            'data'=>$postulant    
+        ]);
+
+
+    }
 }

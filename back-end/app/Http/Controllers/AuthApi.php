@@ -122,7 +122,10 @@ class AuthApi extends Controller
         ]);
         $user=User::where('email',$request->email)->first();
         if(!$user){
-             return redirect()->back()->with('error','Email not found');
+              return  response()->json([
+                'status'=>1,
+                'message'=>'Notre email est invalide.'
+                ]);
             
         }else{
             $reset_code=Str::random(200);
@@ -133,9 +136,7 @@ class AuthApi extends Controller
             Mail::to($user->email)->send(new forgotPasswordMail($user->first_name,$reset_code));
          }
        
-        throw ValidationException::withMessages([
-            'email'=>[trans($status)]
-        ]);
+        
     }
     public function getresetPassword($reset_code){
         $password_reset_data=PasswordReset::where('reset_code',$reset_code)->first();
@@ -223,8 +224,7 @@ public function updateprofile(Request $request){
     public function change_password(Request $request){
         $validator=validator::make($request->all(),[
             'old_password'=>'required|min:8|',
-            'password'=>'required|min:8|confirmed',
-            
+            'password'=>'required|min:8|confirmed', 
        ]);
     }
 }
