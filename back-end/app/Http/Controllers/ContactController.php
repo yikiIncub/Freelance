@@ -17,7 +17,7 @@ class ContactController extends Controller
                 'nom'=>'required|string|min:3',
                 'email'=>'required|email',
                 'numero'=>'required|min:8',
-                'message'=>'required|string|min:25'
+                'message'=>'required|string'
             ]);
             if($validation->fails()){
             return response()->json([
