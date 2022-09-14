@@ -12,7 +12,6 @@ class ContactMail extends Mailable
     use Queueable, SerializesModels;
 
     public $nom;
-    public $prenom;
     public $numero;
     public $email;
     public $message;
@@ -22,13 +21,13 @@ class ContactMail extends Mailable
      *
      * @return void
      */
-    public function __construct($nom ,$prenom,$email ,$numero ,$message)
+    public function __construct($nom ,$email ,$numero ,$message)
     {
         $this->nom=$nom;
         $this->email=$email;
         $this->numero=$numero;
         $this->message=$message;
-        $this->prenom=$prenom;
+       
 
     }
 

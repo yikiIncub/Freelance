@@ -1,6 +1,6 @@
 @component('mail::message')
 # Bonjour !
-- {{$nom}} {{$prenom}}<br>
+- {{$nom}} {{$numero}}<br>
 - {{$email}}
 @component('mail::panel')
 {{$message}}

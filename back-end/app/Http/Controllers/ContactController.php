@@ -31,7 +31,7 @@ class ContactController extends Controller
                 'numero'=>$request->numero,
                 'message'=>$request->message
             ]);
-            $mailable=new ContactMail($request->nom,$request->prenom,$request->email,$request->numero ,$request->message);
+            $mailable=new ContactMail($request->nom,$request->email,$request->numero ,$request->message);
             Mail::to('contact@yikifree.com')->send($mailable);
             return response()->json([
                 'message'=>'message envoyé avec succès.',
