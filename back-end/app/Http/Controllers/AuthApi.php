@@ -274,4 +274,29 @@ public function updateprofile(Request $request){
 
                 return view('auth.password.email');
                 }
+
+
+
+            public function edituser(Request $request, $id){
+                $user=User::where('id',$id)->first();
+                $user->update([
+                    'name'=>$request->name,
+                    'prenom'=>$request->prenom,
+                    'type_client'=>$request->type_client,
+                    'email'=>$request->email,
+                    'type'=>$request->type,
+                    'telephone'=>$request->telephone,
+                    'nationalite'=>$request->nationalite,
+                    'biographie'=>$request->biographie,
+                    'photo'=>$request->photo,
+                    'residence'=>$request->residence,
+                    'statut_competence'=>$request->statut_competence,
+                    'sexe'=>$request->sexe,
+                ]);
+                return response()->json([
+                    'message'=>'Profil mis à jour avec succés.',
+                    'data'=>$user
+                ],200);
+    
+            }
     }

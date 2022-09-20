@@ -213,14 +213,17 @@ Route::get('getPassword',[AuthApi::class,'getPassword']);
 
 
 
+Route::middleware('auth:sanctum')->group(function(){
+    //liste des projet
+    Route::put('listProjet',[ProjetController::class,'listProjet']);
+    //modifier un projet
+    Route::put('updateProjet/{id}',[ProjetController::class,'updateProjet']);
 
-//liste des projet
-Route::put('listProjet',[ProjetController::class,'listProjet']);
-//modififier un projet
-Route::put('updateProjet/{id}',[ProjetController::class,'updateProjet']);
+    //liste des freelance
+    Route::get('listeFreelance',[FreelanceController::class,'listeFreelance']);
 
-//liste des freelance
-Route::get('listeFreelance',[FreelanceController::class,'listeFreelance']);
+    //modifier des information d'un utilisateur
+    Route::post('edituser/{id}',[AuthApi::class,'edituser']);
 
-
+});
 
