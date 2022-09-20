@@ -10,18 +10,18 @@ use Illuminate\Queue\SerializesModels;
 class forgotpasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $user_name;
-    public $reset_code;
+    public $token;
+  
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user_name,$reset_code)
+    public function __construct()
     {
-        $this->user_name=$user_name;
-        $this->reset_code=$reset_code;
+        
+        
 
     }
 
@@ -32,6 +32,6 @@ class forgotpasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.auth.forget_password_mail');
+        return $this->view('auth.password.verify');
     }
 }

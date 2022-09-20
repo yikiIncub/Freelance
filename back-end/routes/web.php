@@ -18,3 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('getresetPassword/{reset_code}',[AuthApi::class,'getresetPassword']);
+
+Route::get('getPassword',[AuthApi::class,'getPassword']); 
+
+Route::get('reset-password/{token}',[AuthApi::class,'getPassword']); 
+
+Route::get('forget-password',[AuthApi::class,'geteMail']); 

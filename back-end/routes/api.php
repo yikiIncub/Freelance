@@ -202,4 +202,25 @@ Route::post('vpostulant',[VpostulantController::class,'vpostulant']);
 
 Route::get('projet_etat/{etat}',[ProjetController::class,'projet_etat']); 
 
-Route::post('countpostulant/{projet_id}',[PostulantController::class,'countpostulant']); 
+Route::get('countpostulant/{projet_id}',[PostulantController::class,'countpostulant']);
+
+Route::post('postEmail',[AuthApi::class,'postEmail']);
+
+
+Route::post('reset-password',[AuthApi::class,'change_password']); 
+
+Route::get('getPassword',[AuthApi::class,'getPassword']); 
+
+
+
+
+//liste des projet
+Route::put('listProjet',[ProjetController::class,'listProjet']);
+//modififier un projet
+Route::put('updateProjet/{id}',[ProjetController::class,'updateProjet']);
+
+//liste des freelance
+Route::get('listeFreelance',[FreelanceController::class,'listeFreelance']);
+
+
+

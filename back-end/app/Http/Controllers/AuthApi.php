@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use File;
-use Mail;
 use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use \Illuminate\Support\Str;
+use \Illuminate\Http\Request;
 use App\Models\PasswordReset;
-use Illuminate\Support\Carbon;
+use \Illuminate\Support\Carbon;
 use App\Mail\forgotpasswordMail;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\ValidationException;
+use \Illuminate\Routing\Controller;
+use \Illuminate\Support\Facades\DB;
+use \Illuminate\Support\Facades\Auth;
+use \Illuminate\Support\Facades\Hash;
+use \Illuminate\Support\Facades\Validator;
+use \Illuminate\Validation\Rules\Password;
+use \Illuminate\Validation\ValidationException;
+use \Illuminate\Support\Facades\Mail;
 
 class AuthApi extends Controller
 {
@@ -221,10 +222,56 @@ public function updateprofile(Request $request){
         'data'=>$user
     ],200);
     }
+    public function postEmail(Request $request)
+         {
+                $request->validate([
+                    'email' => 'required|email|exists:users',
+                ]);
+
+
+                $token = Str::random(60);
+
+                DB::table('password_resets')->insert(
+                    ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
+                );
+
+                Mail::to($request->email)->send(new forgotpasswordMail);
+                    
+                return response()->json([
+                    'message'=>'Un mail vous a été envoyé',
+                  ],200);
+            }
     public function change_password(Request $request){
-        $validator=validator::make($request->all(),[
-            'old_password'=>'required|min:8|',
-            'password'=>'required|min:8|confirmed', 
-       ]);
+        
+        $request->validate([
+            'email' => 'required|email|exists:users',
+            'password' => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required',
+
+        ]);
+
+             if($validator->fails()){
+                return response()->json([
+                    'message'=>'invalide',
+                    'errors'=>$validator->errors()
+                ],200);
+             }
+        
+          $user = User::where('email', $request->email)
+                      ->update(['password' => Hash::make($request->password)]);
+
+          return response()->json([
+                    'message'=>'Mot de passe modifié avec succès',
+                ],200);
     }
-}
+            public function getPassword($token) {
+
+            return view('auth.password.reset', ['token' => $token]);
+            }
+
+            public function getEmail()
+                {
+
+                return view('auth.password.email');
+                }
+    }
