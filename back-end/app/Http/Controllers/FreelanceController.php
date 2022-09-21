@@ -8,7 +8,9 @@ use \App\Models\Profil;
 use \App\Models\Projet;
 use \App\Models\Postulant;
 use \Illuminate\Http\Request;
+use App\Models\Administrateur;
 use \Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class FreelanceController extends Controller
 {
@@ -41,5 +43,29 @@ class FreelanceController extends Controller
             'data'=>$users
         ],200);
      }
+
+
+         public function listexpert(){
+           
+                $data = User::select("*")
+                ->where('type', '=', "freelanceur")
+                ->get();
+                return response()->json([
+                    'message'=>'La liste des nos freelances',
+                    'data'=>$data
+                ],200);
+                
+    }
+
+        public function listclient(){
+           
+                $data = User::select("*")
+                ->where('type', '=', "client")
+                ->get();
+                return response()->json([
+                    'message'=>'La liste des nos freelances',
+                    'data'=>$data
+                ],200);
+        }  
 }
 

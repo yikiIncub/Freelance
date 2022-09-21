@@ -299,4 +299,5 @@ public function updateprofile(Request $request){
                 ],200);
     
             }
+           
     }

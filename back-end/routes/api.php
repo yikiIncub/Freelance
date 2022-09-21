@@ -189,7 +189,7 @@ Route::middleware('auth:sanctum')->group(function(){
 //............Contact.............//
 Route::post('createContact',[ContactController::class,'createContact']);
 Route::middleware('auth:sanctum')->group(function(){
-      Route::get('contactList',[ContactController::class,'contact']);
+      
 });
 
 
@@ -220,10 +220,16 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::put('updateProjet/{id}',[ProjetController::class,'updateProjet']);
 
     //liste des freelance
-    Route::get('listeFreelance',[FreelanceController::class,'listeFreelance']);
+    Route::get('listexpert',[FreelanceController::class,'listexpert']);
+
+    //liste des clients
+    Route::get('listclient',[FreelanceController::class,'listclient']);
 
     //modifier des information d'un utilisateur
     Route::post('edituser/{id}',[AuthApi::class,'edituser']);
+
+    //liste des contact
+    Route::get('contactList',[ContactController::class,'contact']);
 
 });
 
