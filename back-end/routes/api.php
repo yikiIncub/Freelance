@@ -217,7 +217,7 @@ Route::middleware('auth:sanctum')->group(function(){
     //liste des projet
     Route::put('listProjet',[ProjetController::class,'listProjet']);
     //modifier un projet
-    Route::put('updateprojet/{id}',[ProjetController::class,'updateprojet']);
+    Route::put('updateprojet/{id}',[AdminController::class,'updateprojet']);
 
     //liste des freelance
     Route::get('listexpert',[FreelanceController::class,'listexpert']);

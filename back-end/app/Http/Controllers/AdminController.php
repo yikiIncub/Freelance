@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Projet;
 use \Illuminate\Http\Request;
 use \App\Models\Administrateur;
+use \Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\Hash;
 use \Illuminate\Support\Facades\Validator;
-use \Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -95,6 +96,48 @@ class AdminController extends Controller
     public function updateAdmin(Request $request)
     {
         //
+    }
+
+
+    public function updateprojet(Request $request,$id){
+      if($projet=Projet::where(['id'=>$id])->exists()){
+            $validator=validator::make($request->all(),[
+                'titre'=>'required|string|min:5',
+                'categorie'=>'required|string|min:3',
+                'description'=>'required|string|min:10',
+                'budget'=>'required|string|min:5',
+                'competence'=>'required|string|min:3',
+                'temps_realisation'=>'required',
+                'etat'=>'required',
+                'delai'=>'required',
+            ]);
+              if($validator->fails()){
+                    return response()->json([
+                      'message'=>'invalide',
+                      'errors'=>$validator->errors()
+                ],200);
+              }
+              $projet=Projet::where(['id'=>$id])->first();
+                $projet->update([
+                  'titre'=>$request->titre,
+                  'categorie'=>$request->categorie,
+                  'description'=>$request->description,
+                  'budget'=>$request->budget,
+                  'competence'=>$request->competence,
+                  'delai'=>$request->delai,
+                  'temps_realisation'=>$request->temps_realisation,
+                  'etat'=>$request->etat,
+              ]);
+              return response()->json([
+                'message'=>'Modification éffectué avec succés.',
+                'data'=>$projet
+                ],200);
+        }else{
+            return response()->json([
+             'message'=>'Desolé.',
+              ],200);
+    
+      }
     }
 
     
