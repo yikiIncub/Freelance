@@ -83,7 +83,8 @@ class AdminController extends Controller
        
    
     }
-    
+
+
     public function profilAdmin(Request $request)
     {
             return response()->json([
@@ -104,7 +105,7 @@ class AdminController extends Controller
             $validator=validator::make($request->all(),[
                 'titre'=>'required|string|min:5',
                 'categorie'=>'required|string|min:3',
-                'description'=>'required|string|min:10',
+                'description'=>'required|string',
                 'budget'=>'required|string|min:5',
                 'competence'=>'required|string|min:3',
                 'temps_realisation'=>'required',
