@@ -231,5 +231,8 @@ Route::middleware('auth:sanctum')->group(function(){
     //liste des contact
     Route::get('contactList',[ContactController::class,'contact']);
 
+   //reponse contact
+    Route::post('reponsecontact',[ContactController::class,'reponsecontact']);
 });
+ 
 

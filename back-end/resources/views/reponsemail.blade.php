@@ -1,7 +1,6 @@
 @component('mail::message')
-# Bonjour !
-- {{$nom}} {{$numero}}<br>
-- {{$email}}
+# Yikifree
+
 @component('mail::panel')
 {{$message}}
 @endcomponent
