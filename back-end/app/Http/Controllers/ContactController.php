@@ -55,5 +55,8 @@ class ContactController extends Controller
             ]);
             $mailable=new Reponsecontatmail($request->email,$request->message);
             Mail::to($request->email)->send($mailable);
+            return response()->json([
+                'message'=>'Message envoyé avec succès.'
+            ]);
     }
 }

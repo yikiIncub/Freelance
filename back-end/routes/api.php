@@ -1,5 +1,6 @@
 <?php
 
+use \Illuminate\Support\Facades\apiPasswordRecovery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthApi;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,7 @@ use App\Http\Controllers\CompetenceUserController;
 use App\Http\Controllers\PostulantProjetController;
 use App\Http\Controllers\CompetenceDomaineController;
 use App\Http\Controllers\DomaineSpecialiteController;
+use App\Http\Controllers\PasswordResetController;
 
 
 
@@ -120,7 +122,6 @@ Route::middleware('auth:sanctum')->group(function(){
 //Competence User
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('competence_user/{user_id}/{competence_id}',[CompetenceUserController::class,'competence_user']);
-
 });
 
 Route::get('listCategorie/',[CategorieController::class,'listCategorie']);
@@ -236,3 +237,14 @@ Route::middleware('auth:sanctum')->group(function(){
 });
  
 
+
+
+
+
+
+Route::group(['prefix' => Config::get('apiPasswordRecovery.route.prefix'), 'middleware' => Config::get('apiPasswordRecovery.route.middleware')], function () {
+    $uri = Config::get('apiPasswordRecovery.route.uri');
+    Route::post($uri, 'PasswordResetController@store')->name('password-recovery.store');
+    Route::get($uri.'/show/{token}', 'PasswordResetController@show')->name('password-recovery.show');
+    Route::delete($uri, 'PasswordResetController@destroy')->name('password-recovery.destroy');
+});

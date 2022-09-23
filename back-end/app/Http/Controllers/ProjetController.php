@@ -59,7 +59,6 @@ class ProjetController extends Controller
                 'budget'=>'required|string|min:5',
                 'competence'=>'required|string|min:3',
                 'temps_realisation'=>'required',
-                'etat'=>'etat',
                 'delai'=>'required',
             ]);
               if($validator->fails()){
