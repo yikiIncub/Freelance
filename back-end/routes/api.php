@@ -237,14 +237,11 @@ Route::middleware('auth:sanctum')->group(function(){
 });
  
 
-
-
-
-
-
-Route::group(['prefix' => Config::get('apiPasswordRecovery.route.prefix'), 'middleware' => Config::get('apiPasswordRecovery.route.middleware')], function () {
-    $uri = Config::get('apiPasswordRecovery.route.uri');
-    Route::post($uri, 'PasswordResetController@store')->name('password-recovery.store');
-    Route::get($uri.'/show/{token}', 'PasswordResetController@show')->name('password-recovery.show');
-    Route::delete($uri, 'PasswordResetController@destroy')->name('password-recovery.destroy');
+Route::middleware('auth:sanctum')->group(function(){
+    Route::delete('deletecompetence',[ProfilController::class,'deletecompetence']);
+    
 });
+
+
+
+

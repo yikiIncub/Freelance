@@ -52,4 +52,18 @@ class ProfilController extends Controller
          }
          
     }
+    public function deletecompetence($id){
+       
+        if(Profil::where(['id'=>$id])->exists()){
+            $comp=Profil::where(['id'=>$id])->first();
+            $comp->delete();
+            return response()->json([
+              'message'=>'competence supprimé avec succès.',
+            ],200);
+        }else{
+          return response()->json([
+            'message'=>'Desolé.',  
+          ],200);
+        }
+      }
 }
