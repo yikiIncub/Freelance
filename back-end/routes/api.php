@@ -238,7 +238,7 @@ Route::middleware('auth:sanctum')->group(function(){
  
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::delete('deletecompetence',[ProfilController::class,'deletecompetence']);
+    Route::delete('deletecompetence/{id}',[ProfilController::class,'deletecompetence']);
     
 });
 
