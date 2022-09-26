@@ -210,6 +210,7 @@ Route::get('getPassword',[AuthApi::class,'getPassword']);
 
 
 Route::post('loginAdmin',[AdminController::class,'loginAdmin']);
+
 Route::middleware('auth:sanctum','admin:sanctum')->group(function(){
     //liste des projet
     Route::put('listProjet',[ProjetController::class,'listProjet']);
@@ -232,9 +233,9 @@ Route::middleware('auth:sanctum','admin:sanctum')->group(function(){
     Route::post('reponsecontact',[ContactController::class,'reponsecontact']);
 
     Route::post('createAdmin',[AdminController::class,'createAdmin']);
-    Route::middleware('auth:sanctum')->group(function(){
+
     Route::post('profilAdmin',[AdminController::class,'profilAdmin']);
-});
+
 });
  
 
