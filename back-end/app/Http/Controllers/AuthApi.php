@@ -298,6 +298,5 @@ public function updateprofile(Request $request){
                     'data'=>$user
                 ],200);
     
-            }
-           
+            }  
     }

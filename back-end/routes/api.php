@@ -154,12 +154,8 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
 
-//..............Administration.................///
-Route::post('createAdmin',[AdminController::class,'createAdmin']);
-Route::post('loginAdmin',[AdminController::class,'loginAdmin']);
-Route::middleware('auth:sanctum')->group(function(){
-    Route::post('profilAdmin',[AdminController::class,'profilAdmin']);
-});
+
+
 
 Route::middleware('auth:sanctum')->group(function(){
     //............Details du postulant..........//
@@ -213,8 +209,8 @@ Route::post('reset-password',[AuthApi::class,'change_password']);
 Route::get('getPassword',[AuthApi::class,'getPassword']); 
 
 
-
-Route::middleware('auth:sanctum')->group(function(){
+Route::post('loginAdmin',[AdminController::class,'loginAdmin']);
+Route::middleware('auth:sanctum','admin:sanctum')->group(function(){
     //liste des projet
     Route::put('listProjet',[ProjetController::class,'listProjet']);
     //modifier un projet
@@ -234,12 +230,16 @@ Route::middleware('auth:sanctum')->group(function(){
 
    //reponse contact
     Route::post('reponsecontact',[ContactController::class,'reponsecontact']);
+
+    Route::post('createAdmin',[AdminController::class,'createAdmin']);
+    Route::middleware('auth:sanctum')->group(function(){
+    Route::post('profilAdmin',[AdminController::class,'profilAdmin']);
+});
 });
  
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::delete('deletecompetence/{id}',[ProfilController::class,'deletecompetence']);
-    
 });
 
 

@@ -8,6 +8,7 @@ use App\Models\Domaine;
 use App\Models\Competence;
 use App\Models\Specialite;
 use \Illuminate\Http\Request;
+use \Illuminate\Support\Facades\DB;
 
 class ProfilController extends Controller
 {
@@ -15,10 +16,23 @@ class ProfilController extends Controller
     {
         $competence=$request['competence_id'];
         $specialite=$request['specialite_id'];
+        $user=$request['user_id'];
         $domaine=$request['domaine_id'];
         $competences=Competence::where('id',$competence)->first();
         $specialites=Specialite::where('id',$specialite)->first();
         $domaines=Domaine::where('id',$domaine)->first();
+        $comp=DB::table('profils')
+                ->where('competence_id','=',$competence)
+                ->where('user_id','=',$user)
+                ->where('specialite_id','=',$specialite)
+                ->where('domaine_id','=',$domaine)
+                ->exists();
+
+        if($comp){
+          return response()->json([
+              'message'=>'cette competence existe'
+          ]);
+        }else
         if($competences && $specialites && $domaines) 
         { 
             $profil=Profil::create([
@@ -34,8 +48,10 @@ class ProfilController extends Controller
                 
               ],200);
         }
+
     }
     public function listCompetence($user_id,Request $request){
+
         $user=User::where('id',$user_id)->first();
         
         if($user){

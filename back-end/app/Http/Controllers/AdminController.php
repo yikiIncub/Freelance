@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Projet;
 use \Illuminate\Http\Request;
 use \App\Models\Administrateur;
+use Illuminate\Support\Facades\DB;
 use \Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\Hash;
 use \Illuminate\Support\Facades\Validator;
@@ -13,6 +14,8 @@ class AdminController extends Controller
 {
     public function createAdmin(Request $request)
     {
+     
+     
        $validator=validator::make($request->all(),[
             'nom'=>'required|string|min:3',
             'prenom'=>'required|string|min:3',
@@ -27,18 +30,22 @@ class AdminController extends Controller
             'errors'=>$validator->errors()
         ],200);
        }
-       $admin=new Administrateur();
-       $admin->nom=ucwords($request->nom);
-       $admin->prenom=($request->prenom);
-       $admin->email=$request->email;
-       $admin->role=$request->role;
-       $admin-> password=Hash::make($request->password);
-       $admin->save();
-       $token = $admin->createToken('token')->accessToken;
-       return response()->json([ 
-           'status'=>1,
-           'message'=>'Utilisateur créé avec succès'  
-       ]);
+       
+       
+        
+            $admin=new Administrateur();
+            $admin->nom=ucwords($request->nom);
+            $admin->prenom=($request->prenom);
+            $admin->email=$request->email;
+            $admin->role=$request->role;
+            $admin-> password=Hash::make($request->password);
+            $admin->save();
+            $token = $admin->createToken('token')->accessToken;
+            return response()->json([ 
+                'status'=>1,
+                'message'=>'Utilisateur créé avec succès'  
+            ]);
+       
     }
     public function loginAdmin(Request $request)
     {
@@ -101,6 +108,7 @@ class AdminController extends Controller
 
 
     public function updateprojet(Request $request,$id){
+     
       if($projet=Projet::where(['id'=>$id])->exists()){
             $validator=validator::make($request->all(),[
                 'titre'=>'required|string|min:5',
