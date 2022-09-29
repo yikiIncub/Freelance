@@ -229,12 +229,12 @@ Route::middleware('auth:sanctum','admin:sanctum')->group(function(){
     //liste des contact
     Route::get('contactList',[ContactController::class,'contact']);
 
-   //reponse contact
+   //reponse contact 
     Route::post('reponsecontact',[ContactController::class,'reponsecontact']);
 
     Route::post('createAdmin',[AdminController::class,'createAdmin']);
 
-    Route::post('profilAdmin',[AdminController::class,'profilAdmin']);
+    Route::get('profilAdmin',[AdminController::class,'profilAdmin']);
 
     //Nombre de client et expert
     Route::get('countClient/{type}',[AdminController::class,'countClient']);
