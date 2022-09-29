@@ -181,8 +181,6 @@ class ProjetController extends Controller
     }
 }
 
-
-
 public function projet_etat($etat)
 {
   $data = Projet::select("*")

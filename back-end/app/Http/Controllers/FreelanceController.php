@@ -58,12 +58,11 @@ class FreelanceController extends Controller
     }
 
         public function listclient(){
-           
                 $data = User::select("*")
                 ->where('type', '=', "client")
                 ->get();
                 return response()->json([
-                    'message'=>'La liste des nos freelances',
+                    'message'=>'La liste des client',
                     'data'=>$data
                 ],200);
         }  
