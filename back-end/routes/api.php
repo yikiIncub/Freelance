@@ -236,6 +236,16 @@ Route::middleware('auth:sanctum','admin:sanctum')->group(function(){
 
     Route::post('profilAdmin',[AdminController::class,'profilAdmin']);
 
+    //Nombre de client et expert
+    Route::get('countClient/{type}',[AdminController::class,'countClient']);
+
+    //Nombre de Admin
+    Route::get('countAdmin',[AdminController::class,'countAdmin']);
+
+    // Nombre des projet selon l'etat
+    Route::get('countProjet/{etat}',[AdminController::class,'countProjet']);
+
+
 });
  
 

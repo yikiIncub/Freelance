@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Projet;
 use \Illuminate\Http\Request;
 use \App\Models\Administrateur;
@@ -147,7 +148,34 @@ class AdminController extends Controller
               ],200);
     
       }
+      
+    } 
+    public function countClient($type){
+        $nb=User::where('type',$type)->count();
+         return response()->json([
+            'message'=>$type,
+            'data'=>$nb    
+        ]);
+
+
+    }
+   
+    public function countAdmin(){
+        $nb=Administrateur::all()->count();
+         return response()->json([
+            'message'=>'Le nombre des admin',
+            'data'=>$nb    
+        ]);
+
+
     }
 
-    
+    public function countProjet($etat){
+        $nb=Projet::where('etat',$etat)->count();
+         return response()->json([
+            'message'=>'Le nombre des Projets',
+            'data'=>$nb    
+        ]);
+
+    }
 }
