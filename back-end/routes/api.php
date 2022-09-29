@@ -245,6 +245,9 @@ Route::middleware('auth:sanctum','admin:sanctum')->group(function(){
     // Nombre des projet selon l'etat
     Route::get('countProjet/{etat}',[AdminController::class,'countProjet']);
 
+    //liste des administrateurs
+    Route::get('listAdmin',[AdminController::class,'listAdmin']);
+
 
 });
  

@@ -178,4 +178,12 @@ class AdminController extends Controller
         ]);
 
     }
+    public function listAdmin(){
+        $admin=Administrateur::all();
+         return response()->json([
+            'message'=>'La liste des administrateurs',
+            'data'=>$admin   
+        ]);
+
+    }
 }
