@@ -213,7 +213,7 @@ Route::post('loginAdmin',[AdminController::class,'loginAdmin']);
 
 Route::middleware('auth:sanctum','admin:sanctum')->group(function(){
     //liste des projet
-    Route::put('listProjet',[ProjetController::class,'listProjet']);
+    Route::get('listProjet',[ProjetController::class,'listProjet']);
     //modifier un projet
     Route::put('updateprojet/{id}',[AdminController::class,'updateprojet']);
 
