@@ -211,4 +211,12 @@ public function projetpublie()
             'data'=>$data
         ],200);
 }
+public function listProjetAdmin(){
+    $projet=Projet::get();
+        return response()->json([
+          'status'=>1,
+          'message'=>'Les projet',
+          'data'=>$projet 
+      ]);
+}
 }
