@@ -1,0 +1,75 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Recrutement;
+use Illuminate\Http\Request;
+use App\Http\Requests\RecrutementRequest;
+
+class RecrutementController extends Controller
+{
+    public function createRecrutement(RecrutementRequest $request){
+
+        $recutement=Recrutement::create([
+
+                'libelle'=>$request->libelle,
+                'description'=>$request->description,
+                'stuctureRecruteur'=>$request->stuctureRecruteur,
+                'secteurActivite'=>$request->secteurActivite,
+                'lieuAffectation'=>$request->lieuAffectation,
+                'diplome'=>$request->diplome,
+                'niveauEtude'=>$request->niveauEtude,
+                'experience'=>$request->experience,
+                'conditionAge'=>$request->conditionAge,
+                'dossier'=>$request->dossier,
+                'typeContrat'=>$request->typeContrat,
+                'mailRecruteur'=>$request->mailRecruteur,
+                'telRecruteur'=>$request->telRecruteur,
+                'lien'=>$request->lien,
+        ]);
+         return response()->json([
+                'message'=>'Insertion éffectué avec succés.',
+                'data'=>$recutement
+                ],200);
+
+    }
+
+    public function updateRecrutement(RecrutementRequest $request,$id){
+
+        if($recrutement=Recrutement::where(['id'=>$id])->exists()){
+            $recrutement=Recrutement::where(['id'=>$id])->first();
+            $recrutement->update([
+                'libelle'=>$request->libelle,
+                'description'=>$request->description,
+                'stuctureRecruteur'=>$request->stuctureRecruteur,
+                'secteurActivite'=>$request->secteurActivite,
+                'lieuAffectation'=>$request->lieuAffectation,
+                'diplome'=>$request->diplome,
+                'niveauEtude'=>$request->niveauEtude,
+                'experience'=>$request->experience,
+                'conditionAge'=>$request->conditionAge,
+                'dossier'=>$request->dossier,
+                'typeContrat'=>$request->typeContrat,
+                'mailRecruteur'=>$request->mailRecruteur,
+                'telRecruteur'=>$request->telRecruteur,
+                'lien'=>$request->lien,
+            ]);
+             return response()->json([
+                'message'=>'Modification éffectué avec succés.',
+                'data'=>$recrutement
+                ],200);
+        }
+
+
+    }
+
+    public function listeRecrutement(){
+
+        $recrutement = Recrutement::orderByDesc('created_at')->get();;
+         return response()->json([
+                'message'=>'La liste des offres.',
+                'data'=>$recrutement
+                ],200);
+      
+    }
+}

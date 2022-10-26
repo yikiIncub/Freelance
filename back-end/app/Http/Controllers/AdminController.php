@@ -182,7 +182,7 @@ class AdminController extends Controller
         $admin=Administrateur::all();
          return response()->json([
             'message'=>'La liste des administrateurs',
-            'data'=>$admin   
+            'data'=>$admin 
         ]);
 
     }

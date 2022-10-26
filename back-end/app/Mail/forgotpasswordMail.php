@@ -10,26 +10,17 @@ use Illuminate\Queue\SerializesModels;
 class forgotpasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $token;
-  
+ 
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct($token)
     {
-        
-        
-
+      $this->token=$token;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
+
+  
     public function build()
     {
         return $this->view('auth.password.verify');

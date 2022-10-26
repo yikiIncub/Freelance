@@ -63,7 +63,6 @@ class AuthApi extends Controller
        $validator=validator::make($request->all(),[
             'email'=>'required',
             'password'=>'required',
-           
        ]);
        if($validator->fails()){
         return response()->json([
@@ -240,7 +239,9 @@ public function updateprofile(Request $request){
                 return response()->json([
                     'message'=>'Un mail vous a été envoyé',
                   ],200);
-            }
+    }
+
+    
     public function change_password(Request $request){
         
         $request->validate([

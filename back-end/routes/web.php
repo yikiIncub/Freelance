@@ -23,4 +23,4 @@ Route::get('getPassword',[AuthApi::class,'getPassword']);
 
 Route::get('reset-password/{token}',[AuthApi::class,'getPassword']); 
 
-Route::get('forget-password',[AuthApi::class,'geteMail']); 
+Route::get('forget-password',[AuthApi::class,'geteMail']);  

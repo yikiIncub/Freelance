@@ -1,6 +1,5 @@
 <?php
 
-use \Illuminate\Support\Facades\apiPasswordRecovery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthApi;
 use Illuminate\Support\Facades\Route;
@@ -20,11 +19,13 @@ use App\Http\Controllers\VcompetenceControler;
 use App\Http\Controllers\VpostulantController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\DomaineUserController;
+use App\Http\Controllers\RecrutementController;
+use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\CompetenceUserController;
 use App\Http\Controllers\PostulantProjetController;
+use \Illuminate\Support\Facades\apiPasswordRecovery;
 use App\Http\Controllers\CompetenceDomaineController;
 use App\Http\Controllers\DomaineSpecialiteController;
-use App\Http\Controllers\PasswordResetController;
 
 
 
@@ -248,7 +249,6 @@ Route::middleware('auth:sanctum','admin:sanctum')->group(function(){
     //liste des administrateurs
     Route::get('listAdmin',[AdminController::class,'listAdmin']);
 
-
 });
  
 
@@ -258,4 +258,6 @@ Route::middleware('auth:sanctum')->group(function(){
 
 
 
-
+Route::post('createRecrutement',[RecrutementController::class,'createRecrutement']);
+Route::put('updateRecrutement/{id}',[RecrutementController::class,'updateRecrutement']);
+Route::get('listeRecrutement',[RecrutementController::class,'listeRecrutement']);
