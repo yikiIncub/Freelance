@@ -60,7 +60,6 @@ class RecrutementController extends Controller
                 ],200);
         }
 
-
     }
 
     public function listeRecrutement(){
@@ -70,6 +69,5 @@ class RecrutementController extends Controller
                 'message'=>'La liste des offres.',
                 'data'=>$recrutement
                 ],200);
-      
     }
 }

@@ -257,7 +257,8 @@ Route::middleware('auth:sanctum')->group(function(){
 });
 
 
-
+//Recrutement
 Route::post('createRecrutement',[RecrutementController::class,'createRecrutement']);
 Route::put('updateRecrutement/{id}',[RecrutementController::class,'updateRecrutement']);
 Route::get('listeRecrutement',[RecrutementController::class,'listeRecrutement']);
+
