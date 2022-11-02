@@ -261,4 +261,4 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::post('createRecrutement',[RecrutementController::class,'createRecrutement']);
 Route::put('updateRecrutement/{id}',[RecrutementController::class,'updateRecrutement']);
 Route::get('listeRecrutement',[RecrutementController::class,'listeRecrutement']);
-
+Route::delete('deleteRecrutement/{id}',[RecrutementController::class,'deleteRecrutement']);

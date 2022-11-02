@@ -70,4 +70,17 @@ class RecrutementController extends Controller
                 'data'=>$recrutement
                 ],200);
     }
+
+    public function deleteRecrutement($id){
+      if(Recrutement::where(['id'=>$id])->exists()){
+        $recrutement=Recrutement::where(['id'=>$id])->first();
+        $recrutement->delete();
+        return response()->json([
+                'message'=>'Suppession éffectuée avec succès.',
+                ],200);
+       }
+        return response()->json([
+             'message'=>'Elément inexistant.',
+            ],200);
+    }
 }

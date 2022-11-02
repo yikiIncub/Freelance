@@ -144,6 +144,5 @@ class PostulantController extends Controller
             'data'=>$postulant    
         ]);
 
-
     }
 }
