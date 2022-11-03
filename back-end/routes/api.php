@@ -248,17 +248,20 @@ Route::middleware('auth:sanctum','admin:sanctum')->group(function(){
 
     //liste des administrateurs
     Route::get('listAdmin',[AdminController::class,'listAdmin']);
+    
+    
 
 });
  
-
 Route::middleware('auth:sanctum')->group(function(){
     Route::delete('deletecompetence/{id}',[ProfilController::class,'deletecompetence']);
 });
 
 
 //Recrutement
-Route::post('createRecrutement',[RecrutementController::class,'createRecrutement']);
-Route::put('updateRecrutement/{id}',[RecrutementController::class,'updateRecrutement']);
 Route::get('listeRecrutement',[RecrutementController::class,'listeRecrutement']);
-Route::delete('deleteRecrutement/{id}',[RecrutementController::class,'deleteRecrutement']);
+
+//Recrutement
+    Route::post('createRecrutement',[RecrutementController::class,'createRecrutement']);
+    Route::put('updateRecrutement/{id}',[RecrutementController::class,'updateRecrutement']);
+    Route::delete('deleteRecrutement/{id}',[RecrutementController::class,'deleteRecrutement']);

@@ -12,8 +12,9 @@ class RecrutementController extends Controller
 
         $recutement=Recrutement::create([
                 'libelle'=>$request->libelle,
+                'annonce'=>$request->annonce,
                 'description'=>$request->description,
-                'stuctureRecruteur'=>$request->stuctureRecruteur,
+                'structureRecruteur'=>$request->stuctureRecruteur,
                 'secteurActivite'=>$request->secteurActivite,
                 'lieuAffectation'=>$request->lieuAffectation,
                 'diplome'=>$request->diplome,
@@ -39,8 +40,9 @@ class RecrutementController extends Controller
             $recrutement=Recrutement::where(['id'=>$id])->first();
             $recrutement->update([
                 'libelle'=>$request->libelle,
+                'annonce'=>$request->annonce,
                 'description'=>$request->description,
-                'stuctureRecruteur'=>$request->stuctureRecruteur,
+                'structureRecruteur'=>$request->stuctureRecruteur,
                 'secteurActivite'=>$request->secteurActivite,
                 'lieuAffectation'=>$request->lieuAffectation,
                 'diplome'=>$request->diplome,

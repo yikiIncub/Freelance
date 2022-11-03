@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('recrutements', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
+            $table->string('annonce')->nullable();
             $table->string('description')->nullable();
-            $table->string('stuctureRecruteur')->nullable();
+            $table->string('structureRecruteur')->nullable();
             $table->string('secteurActivite')->nullable();
             $table->string('lieuAffectation')->nullable();
             $table->string('diplome')->nullable()->nullable();
