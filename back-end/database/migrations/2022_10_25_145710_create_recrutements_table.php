@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('libelle');
             $table->string('annonce')->nullable();
             $table->string('description')->nullable();
+            $table->string('dureeContrat')->nullable();
             $table->string('structureRecruteur')->nullable();
             $table->string('secteurActivite')->nullable();
             $table->string('lieuAffectation')->nullable();

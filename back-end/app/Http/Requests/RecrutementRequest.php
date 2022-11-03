@@ -26,6 +26,7 @@ class RecrutementRequest extends FormRequest
         return [
             'libelle'=>'required',
             'description'=>'nullable',
+            'dureeContrat'=>'nullable',
             'structureRecruteur'=>'nullable',
             'secteurActivite'=>'nullable',
             'lieuAffectation'=>'nullable',

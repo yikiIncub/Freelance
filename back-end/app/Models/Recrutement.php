@@ -12,6 +12,7 @@ class Recrutement extends Model
         'libelle',
         'annonce',
         'description',
+        'dureeContrat',
         'structureRecruteur',
         'secteurActivite',
         'lieuAffectation',

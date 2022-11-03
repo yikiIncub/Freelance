@@ -14,6 +14,7 @@ class RecrutementController extends Controller
                 'libelle'=>$request->libelle,
                 'annonce'=>$request->annonce,
                 'description'=>$request->description,
+                'dureeContrat'=>$request->dureeContrat,
                 'structureRecruteur'=>$request->stuctureRecruteur,
                 'secteurActivite'=>$request->secteurActivite,
                 'lieuAffectation'=>$request->lieuAffectation,
@@ -42,6 +43,7 @@ class RecrutementController extends Controller
                 'libelle'=>$request->libelle,
                 'annonce'=>$request->annonce,
                 'description'=>$request->description,
+                'dureeContrat'=>$request->dureeContrat,
                 'structureRecruteur'=>$request->stuctureRecruteur,
                 'secteurActivite'=>$request->secteurActivite,
                 'lieuAffectation'=>$request->lieuAffectation,
@@ -96,7 +98,7 @@ class RecrutementController extends Controller
         return response()->json([
             'message'=>'Desolé.',
         ],200);
-    }
+     }
     }
    
 }
