@@ -16,16 +16,16 @@ return new class extends Migration
         Schema::create('recrutements', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
-            $table->string('description');
-            $table->string('stuctureRecruteur');
-            $table->string('secteurActivite');
-            $table->string('lieuAffectation');
-            $table->string('diplome')->nullable();
+            $table->string('description')->nullable();
+            $table->string('stuctureRecruteur')->nullable();
+            $table->string('secteurActivite')->nullable();
+            $table->string('lieuAffectation')->nullable();
+            $table->string('diplome')->nullable()->nullable();
             $table->string('niveauEtude')->nullable();
-            $table->string('experience');
+            $table->string('experience')->nullable();
             $table->string('conditionAge')->nullable();
-            $table->string('dossier');
-            $table->string('typeContrat');
+            $table->string('dossier')->nullable();
+            $table->string('typeContrat')->nullable();
             $table->string('mailRecruteur')->nullable();
             $table->string('telRecruteur')->nullable();
             $table->string('lien')->nullable();

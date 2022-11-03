@@ -33,7 +33,7 @@ class RecrutementRequest extends FormRequest
             'niveauEtude'=>'nullable',
             'experience'=>'nullable',
             'conditionAge'=>'nullable',
-            'dossier'=>'required',
+            'dossier'=>'nullable',
             'typeContrat'=>'nullable',
             'mailRecruteur'=>'nullable|email',
             'telRecruteur'=>'nullable',

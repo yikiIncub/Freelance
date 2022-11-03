@@ -11,7 +11,6 @@ class RecrutementController extends Controller
     public function createRecrutement(RecrutementRequest $request){
 
         $recutement=Recrutement::create([
-
                 'libelle'=>$request->libelle,
                 'description'=>$request->description,
                 'stuctureRecruteur'=>$request->stuctureRecruteur,

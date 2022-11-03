@@ -32,7 +32,6 @@ class User extends Authenticatable
         'statut_competence',
         'sexe',
         'password',
-
     ];
     public $appends=['profil_image_url'];
 
@@ -64,7 +63,6 @@ class User extends Authenticatable
         }else{
           return 'https://ui-avatars.com/api/?name='.urldecode($this->name); 
         }
-       
     }
     public function domaine(){
         return $this->belongsToMany(Domaine::class);
