@@ -265,3 +265,4 @@ Route::get('listeRecrutement',[RecrutementController::class,'listeRecrutement'])
     Route::post('createRecrutement',[RecrutementController::class,'createRecrutement']);
     Route::put('updateRecrutement/{id}',[RecrutementController::class,'updateRecrutement']);
     Route::delete('deleteRecrutement/{id}',[RecrutementController::class,'deleteRecrutement']);
+    Route::get('recrutement/{id}',[RecrutementController::class,'recrutement']);

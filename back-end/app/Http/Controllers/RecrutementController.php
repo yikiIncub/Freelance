@@ -84,4 +84,19 @@ class RecrutementController extends Controller
              'message'=>'Elément inexistant.',
             ],200);
     }
+    
+    public function recrutement($id){
+        if(Recrutement::where(['id'=>$id])->exists()){
+            $recrutement=Recrutement::where(['id'=>$id])->get();
+             return response()->json([
+          'message'=>'Detaille du recrutement',
+          'data'=>$recrutement
+        ],200);
+        }else{
+        return response()->json([
+            'message'=>'Desolé.',
+        ],200);
+    }
+    }
+   
 }
