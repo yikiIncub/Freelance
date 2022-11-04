@@ -249,7 +249,10 @@ Route::middleware('auth:sanctum','admin:sanctum')->group(function(){
     //liste des administrateurs
     Route::get('listAdmin',[AdminController::class,'listAdmin']);
     
-    
+    //Recrutement
+    Route::post('createRecrutement',[RecrutementController::class,'createRecrutement']);
+    Route::put('updateRecrutement/{id}',[RecrutementController::class,'updateRecrutement']);
+    Route::delete('deleteRecrutement/{id}',[RecrutementController::class,'deleteRecrutement']);
 
 });
  
@@ -260,9 +263,4 @@ Route::middleware('auth:sanctum')->group(function(){
 
 //Recrutement
 Route::get('listeRecrutement',[RecrutementController::class,'listeRecrutement']);
-
-//Recrutement
-    Route::post('createRecrutement',[RecrutementController::class,'createRecrutement']);
-    Route::put('updateRecrutement/{id}',[RecrutementController::class,'updateRecrutement']);
-    Route::delete('deleteRecrutement/{id}',[RecrutementController::class,'deleteRecrutement']);
-    Route::get('recrutement/{id}',[RecrutementController::class,'recrutement']);
+Route::get('recrutement/{id}',[RecrutementController::class,'recrutement']);
