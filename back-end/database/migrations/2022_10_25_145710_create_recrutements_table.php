@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('mailRecruteur')->nullable();
             $table->string('telRecruteur')->nullable();
             $table->string('lien')->nullable();
+            $table->string('del')->default('off')->nullable();
             $table->timestamps();
         });
     }

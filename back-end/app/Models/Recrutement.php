@@ -27,5 +27,6 @@ class Recrutement extends Model
         'mailRecruteur',
         'telRecruteur',
         'lien',
+        'del'
     ];
 }

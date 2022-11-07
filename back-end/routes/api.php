@@ -252,7 +252,7 @@ Route::middleware('auth:sanctum','admin:sanctum')->group(function(){
     //Recrutement
     Route::post('createRecrutement',[RecrutementController::class,'createRecrutement']);
     Route::put('updateRecrutement/{id}',[RecrutementController::class,'updateRecrutement']);
-    Route::delete('deleteRecrutement/{id}',[RecrutementController::class,'deleteRecrutement']);
+    Route::put('deleteRecrutement/{id}',[RecrutementController::class,'deleteRecrutement']);
 
 });
  

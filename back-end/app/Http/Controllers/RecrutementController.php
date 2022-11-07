@@ -78,14 +78,16 @@ class RecrutementController extends Controller
                 ],200);
     }
 
-    public function deleteRecrutement($id){
+    public function deleteRecrutement(Request $request,$id){
       if(Recrutement::where(['id'=>$id])->exists()){
         $recrutement=Recrutement::where(['id'=>$id])->first();
-        $recrutement->delete();
+        $recrutement->update([
+            'del'=>$request->del,
+         ]);
         return response()->json([
                 'message'=>'Suppession éffectuée avec succès.',
                 ],200);
-       }
+      }
         return response()->json([
              'message'=>'Elément inexistant.',
             ],200);
@@ -105,7 +107,7 @@ class RecrutementController extends Controller
      }
     }
    public function etatRecrutement($etat){
-    $recrut=Recrutement::orderByDesc('created_at')->where(['etat'=>$etat])->get();
+    $recrut=Recrutement::orderByDesc('created_at')->where(['etat'=>$etat,'del'=>'off'])->get();
     return response()->json([
         'message'=>'les recrutements',
         'data'=>$recrut
