@@ -105,7 +105,7 @@ class RecrutementController extends Controller
      }
     }
    public function etatRecrutement($etat){
-    $recrut=Recrutement::where(['etat'=>$etat])->get();
+    $recrut=Recrutement::orderByDesc('created_at')->where(['etat'=>$etat])->get();
     return response()->json([
         'message'=>'les recrutements',
         'data'=>$recrut
