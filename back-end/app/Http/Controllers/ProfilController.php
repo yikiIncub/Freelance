@@ -27,7 +27,6 @@ class ProfilController extends Controller
                 ->where('specialite_id','=',$specialite)
                 ->where('domaine_id','=',$domaine)
                 ->exists();
-
         if($comp){
           return response()->json([
               'message'=>'cette competence existe'

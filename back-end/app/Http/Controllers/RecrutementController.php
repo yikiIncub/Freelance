@@ -14,6 +14,7 @@ class RecrutementController extends Controller
                 'libelle'=>$request->libelle,
                 'annonce'=>$request->annonce,
                 'logo'=>$request->logo,
+                'etat'=>$request->etat,
                 'description'=>$request->description,
                 'dureeContrat'=>$request->dureeContrat,
                 'structureRecruteur'=>$request->stuctureRecruteur,
@@ -43,6 +44,7 @@ class RecrutementController extends Controller
             $recrutement->update([
                 'libelle'=>$request->libelle,
                 'logo'=>$request->logo,
+                'etat'=>$request->etat,
                 'annonce'=>$request->annonce,
                 'description'=>$request->description,
                 'dureeContrat'=>$request->dureeContrat,
@@ -102,5 +104,11 @@ class RecrutementController extends Controller
         ],200);
      }
     }
-   
+   public function etatRecrutement($etat){
+    $recrut=Recrutement::where(['etat'=>$etat])->get();
+    return response()->json([
+        'message'=>'les recrutements',
+        'data'=>$recrut
+    ]);
+   }
 }

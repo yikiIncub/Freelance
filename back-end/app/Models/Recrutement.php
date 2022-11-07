@@ -11,6 +11,7 @@ class Recrutement extends Model
     protected $fillable = [
         'libelle',
         'logo',
+        'etat',
         'annonce',
         'description',
         'dureeContrat',

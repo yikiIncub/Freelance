@@ -264,6 +264,6 @@ Route::middleware('auth:sanctum')->group(function(){
 //Recrutement
 Route::get('listeRecrutement',[RecrutementController::class,'listeRecrutement']);
 Route::get('recrutement/{id}',[RecrutementController::class,'recrutement']);
-
+Route::get('etatRecrutement/{etat}',[RecrutementController::class,'etatRecrutement']);
 
 
