@@ -10,6 +10,7 @@ class Recrutement extends Model
     use HasFactory;
     protected $fillable = [
         'libelle',
+        'logo',
         'annonce',
         'description',
         'dureeContrat',

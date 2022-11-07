@@ -15,7 +15,7 @@ class DomaineController extends Controller{
      public function createDomaine(Request $request) {
       
       $validator=validator::make($request->all(),[
-                'libelle'=>'required|unique: ',
+                'libelle'=>'required|unique:domaines',
            ]);
         if($validator->fails()){
          return response()->json([
