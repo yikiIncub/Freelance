@@ -71,7 +71,7 @@ class RecrutementController extends Controller
 
     public function listeRecrutement(){
 
-        $recrutement = Recrutement::orderByDesc('created_at')->get();;
+        $recrutement = Recrutement::orderByDesc('created_at')->where(['del'=>'off'])->get();;
          return response()->json([
                 'message'=>'La liste des offres.',
                 'data'=>$recrutement
