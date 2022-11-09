@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('libelle');
             $table->string('etat')->nullable();
+            $table->string('dateLimite')->nullable();
             $table->string('logo')->nullable();
             $table->string('annonce')->nullable();
             $table->string('description')->nullable();

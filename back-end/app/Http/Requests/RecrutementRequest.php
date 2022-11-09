@@ -28,6 +28,7 @@ class RecrutementRequest extends FormRequest
             'description'=>'nullable',
             'logo'=>'nullable',
             'etat'=>'nullable',
+            'dateLimite'=>'nullable',
             'dureeContrat'=>'nullable',
             'structureRecruteur'=>'nullable',
             'secteurActivite'=>'nullable',

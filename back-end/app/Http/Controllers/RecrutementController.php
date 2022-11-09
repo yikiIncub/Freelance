@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recrutement;
-use Illuminate\Http\Request;
-use App\Http\Requests\RecrutementRequest;
+use \App\Models\Recrutement;
+use \Illuminate\Http\Request;
+use \App\Http\Requests\RecrutementRequest;
 
 class RecrutementController extends Controller
 {
@@ -14,6 +14,7 @@ class RecrutementController extends Controller
                 'libelle'=>$request->libelle,
                 'annonce'=>$request->annonce,
                 'logo'=>$request->logo,
+                'dateLimite'=>$request->dateLimite,
                 'etat'=>$request->etat,
                 'description'=>$request->description,
                 'dureeContrat'=>$request->dureeContrat,
@@ -44,6 +45,7 @@ class RecrutementController extends Controller
             $recrutement->update([
                 'libelle'=>$request->libelle,
                 'logo'=>$request->logo,
+                'dateLimite'=>$request->dateLimite,
                 'etat'=>$request->etat,
                 'annonce'=>$request->annonce,
                 'description'=>$request->description,
