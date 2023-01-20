@@ -21,7 +21,7 @@ class PostulantController extends Controller
         $user=$request['user_id'];
         $projet=Projet::where('id',$proj)->first();
         $users=User::where('id',$user)->first();
-        if($postulant=Postulant::where('user_id',$user)->exists()){
+        if($postulant=Postulant::where('projet_id',$proj)){
             return response()->json([
                 'message'=>'Vous avez déja postuler à ce projet',
                 ],200);
